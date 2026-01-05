@@ -562,357 +562,532 @@ function getUserIP() {
   cargo_docs: {
     title: "General Ops",
     questions: [
-      {
-        id: "cdoc1",
-        question: "What are the three legal functions of a Bill of Lading?",
-        choices: ["Contract of carriage", "Cargo receipt", "Document of title", "Customs clearance"],
-        correct: [0,1,2],
-        explanation: "The Bill of Lading serves as evidence of the contract of carriage, receipt of goods, and document of title."
-      },
-      {
-        id: "cdoc2",
-        question: "Which documents are typically required under a Letter of Credit?",
-        choices: ["Bill of Lading", "Certificate of Origin", "Commercial Invoice", "Time Sheet"],
-        correct: [0,1,2],
-        explanation: "Banks require the original Bill of Lading, Certificate of Origin, and Commercial Invoice to release payment."
-      },
-      {
-        id: "cdoc3",
-        question: "What does a 'Clean B/L' indicate?",
-        choices: ["No defects or shortages", "Cargo is insured", "Cargo is negotiable", "Cargo is prepaid"],
-        correct: [0],
-        explanation: "A Clean B/L means no defects or shortages are noted on the cargo."
-      },
-      {
-        id: "cdoc4",
-        question: "Which document confirms the quantity of cargo loaded?",
-        choices: ["Certificate of Quantity", "Cargo Manifest", "Bill of Lading", "Ullage Report"],
-        correct: [0,2],
-        explanation: "The Certificate of Quantity and bill of ladding confirms the amount of product loaded and is used for invoicing."
-      },
-      {
-        id: "cdoc5",
-        question: "Which document is used to prove product origin for customs?",
-        choices: ["Certificate of Quality", "Certificate of Origin", "Cargo Manifest", "LOI"],
-        correct: [1],
-        explanation: "The Certificate of Origin is required to determine applicable duties and trade agreements."
-      },
-      {
-        id: "cdoc6",
-        question: "What is the role of the Cargo Manifest?",
-        choices: ["Customs clearance", "Ownership transfer", "Quality confirmation", "Payment guarantee"],
-        correct: [0],
-        explanation: "The Cargo Manifest lists all cargo items and is used by customs at discharge port."
-      },
-      {
-        id: "cdoc7",
-        question: "Which document confirms that shipping documents are onboard?",
-        choices: ["Master’s Receipt for Documents", "LOI", "Cargo Manifest", "Time Sheet"],
-        correct: [0],
-        explanation: "The Master’s Receipt for Documents confirms that required documents are onboard the vessel."
-      },
-      {
-        id: "cdoc8",
-        question: "What is the consequence of a Claused B/L?",
-        choices: ["Bank refuses payment", "Cargo is rejected", "Customs delay", "All of the above"],
-        correct: [0],
-        explanation: "Banks do not accept Claused B/Ls, which prevents payment under L/C."
-      },
-      {
-        id: "cdoc9",
-        question: "Which document allows cargo delivery without original B/L?",
-        choices: ["Letter of Indemnity", "Cargo Manifest", "Certificate of Origin", "Time Sheet"],
-        correct: [0],
-        explanation: "A Letter of Indemnity (LOI) allows delivery without the original Bill of Lading."
-      },
-      {
-        id: "cdoc10",
-        question: "What must be included in a valid LOI?",
-        choices: ["Authorized signatory", "Cargo description", "Contract reference", "All of the above"],
-        correct: [3],
-        explanation: "A valid LOI must include contract details, cargo info, and be signed by an authorized signatory."
-      },
-      {
-        id: "cdoc11",
-        question: "Which clause allows Charter-party terms to be included in a B/L?",
-        choices: ["Incorporation clause", "To Order clause", "Clean clause", "Delivery clause"],
-        correct: [0],
-        explanation: "The incorporation clause allows Charter-party terms to be included in the B/L."
-      },
-      {
-        id: "cdoc12",
-        question: "Who is legally entitled to receive goods under a B/L?",
-        choices: ["Consignee", "Notify Party", "Shipper", "Carrier"],
-        correct: [0],
-        explanation: "The Consignee is the legal recipient of goods under the Bill of Lading."
-      },
-      {
-        id: "cdoc13",
-        question: "What is the role of the Notify Party?",
-        choices: ["Receives goods", "Is informed of shipment arrival", "Issues B/L", "Signs LOI"],
-        correct: [1],
-        explanation: "The Notify Party is informed of the shipment’s arrival but cannot claim the goods."
-      },
-      {
-        id: "cdoc14",
-        question: "Which document confirms cargo quality?",
-        choices: ["Certificate of Quality", "Cargo Manifest", "Time Sheet", "LOI"],
-        correct: [0],
-        explanation: "The Certificate of Quality confirms compliance with contractual specifications."
-      },
-      {
-        id: "cdoc15",
-        question: "Which documents are typically signed by the Master?",
-        choices: ["Bill of Lading", "Master’s Receipt for Documents", "Time Sheet", "All of the above"],
-        correct: [3],
-        explanation: "The Master signs the B/L, receipts for documents and samples, and the Time Sheet."
-      },
-      {
-        id: "cdoc16",
-        question: "What does 'To Order' mean on a B/L?",
-        choices: ["Cargo is negotiable", "Cargo is insured", "Cargo is prepaid", "Cargo is rejected"],
-        correct: [0],
-        explanation: "'To Order' makes the B/L negotiable and transferable."
-      },
-      {
-        id: "cdoc17",
-        question: "Which document tracks loading/discharge timings?",
-        choices: ["Time Sheet / Statement of Facts", "Cargo Manifest", "LOI", "Certificate of Origin"],
-        correct: [0],
-        explanation: "The Time Sheet records all operational events for laytime calculation."
-      },
-      {
-        id: "cdoc18",
-        question: "What is the purpose of the Master’s Receipt for Samples?",
-        choices: ["Confirms sample delivery", "Confirms cargo quantity", "Confirms payment", "Confirms B/L issuance"],
-        correct: [0],
-        explanation: "It confirms that cargo samples have been delivered onboard."
-      },
-      {
-        id: "cdoc19",
-        question: "What is the risk of delivering cargo without original B/L?",
-        choices: ["Misdelivery claim", "Loss of title", "Legal dispute", "All of the above"],
-        correct: [3],
-        explanation: "Delivery without original B/L exposes parties to legal and financial risks."
-      },
-      {
-        id: "cdoc20",
-        question: "Which document confirms vessel readiness?",
-        choices: ["Notice of Readiness", "Bill of Lading", "LOI", "Cargo Manifest"],
-        correct: [0],
-        explanation: "The Notice of Readiness confirms the vessel is ready for loading/discharge."
-      },
-      {
-        id: "cdoc21",
-        question: "Which document confirms cargo was loaded?",
-        choices: ["Shipped B/L", "Received for Shipment B/L", "LOI", "Cargo Manifest"],
-        correct: [0],
-        explanation: "A Shipped B/L confirms cargo has been loaded onboard."
-      },
-      {
-        id: "cdoc22",
-        question: "What is the role of the Charter-party in relation to the B/L?",
-        choices: ["Defines carriage terms", "Defines payment terms", "Defines customs duties", "Defines cargo quality"],
-        correct: [0],
-        explanation: "The Charter-party defines the terms of carriage between Charterer and Carrier."
-      },
-      {
-        id: "cdoc23",
-        question: "Which document confirms tank cleanliness?",
-        choices: ["Tank Inspection Report", "Certificate of Origin", "LOI", "Cargo Manifest"],
-        correct: [0],
-        explanation: "The Tank Inspection Report confirms the cleanliness of ship’s tanks before loading."
-      },
-      {
-        id: "cdoc24",
-        question: "What does a negotiable B/L allow?",
-        choices: ["Transfer of ownership", "Customs clearance", "Cargo inspection", "Payment delay"],
-        correct: [0],
-        explanation: "A negotiable B/L allows transfer of ownership through endorsement."
-      },
-      {
-        id: "cdoc25",
-        question: "Which documents are typically signed in 3/3 originals?",
-        choices: ["Bill of Lading", "Certificate of Quantity", "Certificate of Origin", "All of the above"],
-        correct: [0],
-        explanation: "The Bill of Lading is traditionally issued in 3/3 originals for legal and operational purposes."
-      },
-
+{
+      id: "cdoc1",
+      question: "What are the three main legal functions of a Bills of Lading?",
+      choices: [
+        "Customs clearance, insurance coverage, document of title",
+        "Contract of carriage, receipt of goods, document of title",
+        "Cargo description, freight payment, receipt of goods",
+        "Quantity control, conditions of carriage, laytime calculation"
+      ],
+      correct: [1],
+      explanation: "A Bills of Lading is evidence of the contract of carriage between the Shipper and the Carrier (so long as the original Bills remain in the Shipper’s hands), proof that the goods were received on board the vessel under the care of the Carrier, and acts as a document of title hence it must be issued in negotiable form to allow transfer when required by the commercial contract (sale FOB, CFR & CIF)."
+    },
+      
+{
+      id: "cdoc2",
+      question: "Which type of Bills of Lading allows transfer of ownership by endorsement?",
+      choices: [
+        "Straight Bills of Lading",
+        "To Order Bills of Lading",
+        "Sea Waybills",
+        "Received for Shipment Bills of Lading"
+      ],
+      correct: [1],
+      explanation: "A “To Order” Bills of Lading is negotiable and allows transfer of ownership by endorsement. If the words “to the order of” are missing in front of the Consignee’s name, you are facing “straight Bills of Lading” which are not negotiable."
+    },
     {
-        id: "cdoc26",
-        question: "Which parties may be involved in signing a Letter of Indemnity?",
-        choices: ["Charterer", "Shipper", "Receiver", "Carrier"],
-        correct: [0,1,3],
-        explanation: "LOIs are typically signed by Charterers or Shippers and addressed to the Carrier."
-      },
-      {
-        id: "cdoc27",
-        question: "Which risks are covered by a Letter of Indemnity?",
-        choices: ["Misdelivery", "Loss of title", "Cargo damage", "Legal claims"],
-        correct: [0,1,3],
-        explanation: "LOIs cover risks such as misdelivery, loss of title, and legal consequences."
-      },
-      {
-        id: "cdoc28",
-        question: "Which documents are typically required for customs clearance?",
-        choices: ["Certificate of Origin", "Cargo Manifest", "Commercial Invoice", "LOI"],
-        correct: [0,1,2],
-        explanation: "Customs authorities require Certificate of Origin, Cargo Manifest, and Invoice for clearance."
-      },
-      {
-        id: "cdoc29",
-        question: "Which elements must be present on a valid Bill of Lading?",
-        choices: ["Name of shipper", "Name of consignee", "Cargo description", "Date of shipment"],
-        correct: [0,1,2,3],
-        explanation: "A valid B/L must include shipper, consignee, cargo details, and shipment date."
-      },
-      {
-        id: "cdoc30",
-        question: "Which types of Bill of Lading exist?",
-        choices: ["Straight B/L", "To Order B/L", "Bearer B/L", "Received for Shipment B/L"],
-        correct: [0,1,3],
-        explanation: "Common types include Straight B/L, To Order B/L, and Received for Shipment B/L."
-      },
-      {
-        id: "cdoc31",
-        question: "Which document confirms the vessel has received cargo?",
-        choices: ["Received for Shipment B/L", "Shipped B/L", "Cargo Manifest", "LOI"],
-        correct: [0],
-        explanation: "Received for Shipment B/L confirms cargo has been received but not yet loaded."
-      },
-      {
-        id: "cdoc32",
-        question: "Which documents are typically exchanged at discharge port?",
-        choices: ["Original B/L", "LOI", "Cargo Manifest", "Discharge instructions"],
-        correct: [0,2,3],
-        explanation: "At discharge, original B/L, manifest and discharge instructions are exchanged."
-      },
-      {
-        id: "cdoc33",
-        question: "What is the purpose of the Tank Inspection Report?",
-        choices: ["Confirm tank cleanliness", "Confirm cargo quantity", "Confirm cargo quality", "Confirm vessel readiness"],
-        correct: [0],
-        explanation: "The Tank Inspection Report confirms tanks are clean and suitable for loading."
-      },
-      {
-        id: "cdoc34",
-        question: "Which documents may be required by the bank for payment?",
-        choices: ["Original B/L", "Certificate of Origin", "Commercial Invoice", "LOI"],
-        correct: [0,1,2],
-        explanation: "Banks require original B/L, Certificate of Origin, and Invoice under L/C terms."
-      },
-      {
-        id: "cdoc35",
-        question: "What does the incorporation clause in a B/L do?",
-        choices: ["Includes Charter-party terms", "Transfers ownership", "Confirms cargo quality", "Confirms payment"],
-        correct: [0],
-        explanation: "It incorporates Charter-party terms into the Bill of Lading."
-      },
-      {
-        id: "cdoc36",
-        question: "Which document is used to confirm cargo delivery without original B/L?",
-        choices: ["LOI", "Cargo Manifest", "Time Sheet", "Certificate of Quantity"],
-        correct: [0],
-        explanation: "LOI is used when cargo is delivered without the original Bill of Lading."
-      },
-      {
-        id: "cdoc37",
-        question: "Which parties are typically listed on a Bill of Lading?",
-        choices: ["Shipper", "Consignee", "Notify Party", "Carrier"],
-        correct: [0,1,2,3],
-        explanation: "All listed parties are standard on a Bill of Lading."
-      },
-      {
-        id: "cdoc38",
-        question: "Which document confirms the cargo’s physical characteristics?",
-        choices: ["Certificate of Quality", "Certificate of Quantity", "Cargo Manifest", "LOI"],
-        correct: [0],
-        explanation: "The Certificate of Quality confirms the physical properties of the cargo."
-      },
-      {
-        id: "cdoc39",
-        question: "Which document is used to confirm cargo volume?",
-        choices: ["Certificate of Quantity", "Ullage Report", "Cargo Manifest", "Time Sheet"],
-        correct: [0,1],
-        explanation: "Both Certificate of Quantity and Ullage Report confirm cargo volume."
-      },
-      {
-        id: "cdoc40",
-        question: "Which documents are signed by the Master?",
-        choices: ["Bill of Lading", "Master’s Receipts", "Time Sheet", "LOI"],
-        correct: [0,1,2],
-        explanation: "The Master signs the B/L, receipts for documents/samples, and Time Sheet."
-      },
-      {
-        id: "cdoc41",
-        question: "Which document confirms the vessel is ready for operations?",
-        choices: ["Notice of Readiness", "Time Sheet", "Cargo Manifest", "LOI"],
-        correct: [0],
-        explanation: "The Notice of Readiness confirms the vessel is ready for loading/discharge."
-      },
-      {
-        id: "cdoc42",
-        question: "Which documents are used to verify cargo details at discharge?",
-        choices: ["Cargo Manifest", "Certificate of Quantity", "Certificate of Origin", "LOI"],
-        correct: [0,1,2],
-        explanation: "Cargo Manifest, Quantity and Origin certificates are used to verify cargo details."
-      },
-      {
-        id: "cdoc43",
-        question: "Which document confirms the cargo has been shipped?",
-        choices: ["Shipped B/L", "Received for Shipment B/L", "LOI", "Cargo Manifest"],
-        correct: [0],
-        explanation: "Shipped B/L confirms cargo has been loaded onboard."
-      },
-      {
-        id: "cdoc44",
-        question: "Which document is used to confirm sample delivery?",
-        choices: ["Master’s Receipt for Samples", "Certificate of Quality", "LOI", "Cargo Manifest"],
-        correct: [0],
-        explanation: "Master’s Receipt for Samples confirms delivery of cargo samples onboard."
-      },
-      {
-        id: "cdoc45",
-        question: "Which documents are used to confirm cargo readiness?",
-        choices: ["Notice of Readiness", "Tank Inspection Report", "Certificate of Quantity", "Time Sheet"],
-        correct: [0,1],
-        explanation: "Notice of Readiness and Tank Inspection confirm vessel and tank readiness."
-      },
-      {
-        id: "cdoc46",
-        question: "Which documents are used to support customs declarations?",
-        choices: ["Certificate of Origin", "Cargo Manifest", "Commercial Invoice", "LOI"],
-        correct: [0,1,2],
-        explanation: "Customs declarations rely on Origin certificate, Manifest and Invoice."
-      },
-      {
-        id: "cdoc47",
-        question: "Which document confirms the cargo is free from contamination?",
-        choices: ["Tank Inspection Report", "Certificate of Quality", "LOI", "Cargo Manifest"],
-        correct: [0,1],
-        explanation: "Tank Inspection and Quality Certificate confirm cargo cleanliness."
-      },
-      {
-        id: "cdoc48",
-        question: "Which document confirms the cargo quantity at loading?",
-        choices: ["Certificate of Quantity", "Ullage Report", "Cargo Manifest", "LOI"],
-        correct: [0,1],
-        explanation: "Certificate of Quantity and Ullage Report confirm loaded volume."
-      },
-      {
-        id: "cdoc49",
-        question: "Which document is used to confirm cargo ownership?",
-        choices: ["Bill of Lading", "LOI", "Certificate of Origin", "Cargo Manifest"],
-        correct: [0],
-        explanation: "The Bill of Lading acts as a document of title confirming ownership."
-      },
-      {
-        id: "cdoc50",
-        question: "Which documents are required for payment under a documentary sale?",
-        choices: ["Original B/L", "Certificate of Origin", "Commercial Invoice", "All of the above"],
-        correct: [3],
-        explanation: "All listed documents are required for payment under documentary sale terms."
-      }
+      id: "cdoc3",
+      question: "Who is legally entitled to claim the goods from the Carrier under a Bills of Lading?",
+      choices: ["Notify Party", "Shipper", "Consignee", "Charterer"],
+      correct: [2],
+      explanation: "The Consignee named in the Bills of Lading or its Transferee can claim the goods at discharge port upon presentation to Master of an original Bills of Lading in its name."
+    },
+    {
+      id: "cdoc4",
+      question: "What does “Clean on Board” Bills of Lading mean?",
+      choices: [
+        "The cargo is insured",
+        "No defects or shortages are noted",
+        "The freight is prepaid",
+        "The vessel is suitable for carrying the cargo"
+      ],
+      correct: [1],
+      explanation: "“Clean on Board” means the cargo was loaded in apparent good order, with no defects or shortages noted by the Master onto the Bills. T&S can only accept “Clean on board” Bills of Lading for commercial and payment purpose. A Bank will only accept “Clean on board” Bills of Lading to effect payment under a documentary L/C."
+    },
+    {
+      id: "cdoc5",
+      question: "What is the main risk of delivering cargo without presentation of the original Bills of Lading at discharge port?",
+      choices: [
+        "Delay in customs clearance",
+        "Loss of insurance",
+        "Misdelivery claim and legal dispute",
+        "Higher freight charges"
+      ],
+      correct: [2],
+      explanation: "Delivering cargo without the original bills of lading can result in claims of misdelivery and legal disputes. This is particularly problematic in cases of fraud, where the cargo may be delivered to someone who is not the rightful holder or consignee of the original Bills. Such individuals might attempt to claim an interest in the cargo using a tampered or counterfeit copy of the Bills."
+    },
+    {
+      id: "cdoc6",
+      question: "Which document allows cargo delivery without presentation of an original Bill of Lading?",
+      choices: [
+        "The Certificate of Origin",
+        "An adequate shipping Letter of Indemnity",
+        "The original Cargo Manifest",
+        "Time Sheet"
+      ],
+      correct: [1],
+      explanation: "An adequate shipping Letter of Indemnity (LOI) allows delivery without the original Bills of Lading.",
+      tip: "Typically, market refers to IGP&I LOI format “A”."
+    },
+    {
+      id: "cdoc7",
+      question: "What is the role of the Notify Party on Bills of Lading?",
+      choices: [
+        "Receives the goods",
+        "Is informed of shipment arrival",
+        "Pays the freight",
+        "Issues the Bills of Lading"
+      ],
+      correct: [1],
+      explanation: "The Notify Party is only informed of the shipment’s arrival and cannot claim the goods from the Carrier upon production of a copy of the Bill of lading."
+    },
+    {
+      id: "cdoc8",
+      question: "As per Incoterms CFR or CIF, what document must the seller provide to the buyer?",
+      choices: [
+        "Only an invoice",
+        "Only a certificate of quality",
+        "The usual transport document (e.g., negotiable Bills of Lading)",
+        "Only a packing list"
+      ],
+      correct: [2],
+      explanation: "Under CFR/CIF, the seller must provide the usual transport document, usually a negotiable Bills of Lading."
+    },
+    {
+      id: "cdoc9",
+      question: "What is a “claused” Bills of Lading?",
+      choices: [
+        "One with a clean on-board notation",
+        "One with a notation of defects or shortages",
+        "One issued by the Charterer",
+        "One used for customs purposes only"
+      ],
+      correct: [1],
+      explanation: "A “claused” Bills of Lading contains remarks about defects or shortages in the cargo made by the Master before signing. “Claused” Bills of Lading are not accepted by T&S and banks will refuse to pay against presentation of “claused” Bills of Lading."
+    },
+    {
+      id: "cdoc10",
+      question: "Who is responsible for the accuracy of information in the Bills of Lading?",
+      choices: ["Carrier", "Consignee", "Shipper", "Notify Party"],
+      correct: [2],
+      explanation: "The Shipper guarantees the accuracy of the information and may be liable for errors towards the Carrier and/or the Consignee."
+    },
+    {
+      id: "cdoc11",
+      question: "What is the main function of a Sea WayBills?",
+      choices: [
+        "It is negotiable and transfers title",
+        "It serves as a document of title",
+        "It is non-negotiable and only acts as a receipt and delivery instruction",
+        "It is used for customs clearance only"
+      ],
+      correct: [2],
+      explanation: "A Sea Waybill is non-negotiable and is used as a receipt and delivery instruction, not as a document of title. It cannot be transferred by endorsement. Only the named Consignee can take delivery."
+    },
+    {
+      id: "cdoc12",
+      question: "What is the main legal framework governing Bills of Lading in international trade?",
+      choices: [
+        "International conventions such as Hague-Visby Rules",
+        "UCP 600",
+        "Incoterms",
+        "ISPS Code"
+      ],
+      correct: [0],
+      explanation: "The Hague-Visby Rules is a widely adopted legal framework for Bills of Lading in international trade together with the Hamburg Rules, the Rotterdam Rules…"
+    },
+    {
+      id: "cdoc13",
+      question: "What is the effect of antedating or post-dating a Bills of Lading?",
+      choices: [
+        "It is allowed if agreed by parties",
+        "It is considered fraudulent and can void insurance",
+        "It speeds up payment",
+        "It is required for customs"
+      ],
+      correct: [1],
+      explanation: "Antedating or post-dating is considered fraudulent and can void P&I insurance.",
+      tip: "The Bills of lading date is the date on which the entire shipment it covers is on board the vessel care of the Master, i.e. it is the Completion of Loading date."
+    },
+    {
+      id: "cdoc14",
+      question: "To get a Carrier’s Bills of Lading, who must sign?",
+      choices: ["the Consignee", "the Shipper", "the Master (or its agents)", "the Notify Party"],
+      correct: [2],
+      explanation: "The Master or an authorized agent signs the Bills of Lading on behalf of the Carrier."
+    },
+    {
+      id: "cdoc15",
+      question: "What is the main advantage of incorporating the Charter-Party terms in the Bills of Lading?",
+      choices: [
+        "To provide legal clarity in the event of a dispute involving the Carrier brought under the Bills",
+        "To facilitate the payment of the freight",
+        "To enable the charterer to change the delivery address at any time without notifying the Carrier",
+        "To authorise the shipper to request a copy of the Charter-Party"
+      ],
+      correct: [0],
+      explanation: "Incorporating the Charter-Party (C/P) terms in a Bill of Lading serves to provide legal clarity in the event of a dispute involving the Carrier."
+    },
+    {
+      id: "cdoc16",
+      question: "What documents are usually required for payment under a documentary Letter of Credit covering sales CFR?",
+      choices: [
+        "Only the commercial invoice",
+        "Only the certificate of origin",
+        "The Original Bills of Lading, certificate of origin, certificate of quality and quantity, and commercial invoice",
+        "Only the packing list"
+      ],
+      correct: [2],
+      explanation: "Banks generally require such documents for payment in CFR sales where the seller agreed to transfer negotiable Bills of Lading and standard shipping documents."
+    },
+    {
+      id: "cdoc17",
+      question: "What is the main risk for the Carrier when accepting a shipping LOI for delivery without the original Bills of Lading?",
+      choices: [
+        "Delay in discharge",
+        "Loss of title",
+        "Loss of P&I insurance cover in case of misdelivery claim",
+        "Higher port charges"
+      ],
+      correct: [2],
+      explanation: "P&I insurance does not cover misdelivery claim when cargo is released against a shipping LOI, IGP&I type A or B or C."
+    },
+    {
+      id: "cdoc18",
+      question: "What is the difference between a “Shipped” and a “Received for Shipment” Bills of Lading?",
+      choices: [
+        "No difference",
+        "“Shipped” confirms cargo is loaded; “Received for Shipment” confirms cargo is received but not yet loaded",
+        "“Received for Shipment” is negotiable",
+        "“Shipped” is only for customs"
+      ],
+      correct: [1],
+      explanation: "“Shipped” means cargo is on board; “Received for Shipment” means cargo is received but not yet loaded.",
+      tip: "Typically, in soft commodity, when an isotank is brought to the jetty and entrusted to the Master for subsequent loading on board the vessel. Supplier can request Master to sign a “received for shipment” Bill of lading."
+    },
+    {
+      id: "cdoc19",
+      question: "In true DAP/DES sales (no hybrid form), what should you do if the buyer requests an original Bills of Lading for customs?",
+      choices: [
+        "Always provide the original Bills of Lading",
+        "Refuse and offer a non-negotiable copy for customs purpose only",
+        "Cancel the sale",
+        "Issue a Sea Waybill"
+      ],
+      correct: [1],
+      explanation: "There is no obligation to provide the original Bills of Lading to a DAP/DES buyer.",
+      tip: "Offer a non-negotiable copy for customs purposes. If buyer is not satisfied with this solution, discuss with the OTS expert."
+    },
+    {
+      id: "cdoc20",
+      question: "Historically, what is the main reason for issuing Bills of Lading in sets of three originals?",
+      choices: [
+        "For customs, insurance, and freight purposes",
+        "For legal and operational reasons: one for Shipper, one for Consignee, one for Carrier",
+        "For shipping reasons: one for Carrier, one for Agents, one for Shipowner",
+        "For loading terminal reasons: one for Refinery, one for Control Room, one for Customs"
+      ],
+      correct: [1],
+      explanation: "Traditionally, three originals were issued to allow remittance of one copy to Shipper, Consignee, and Carrier.",
+      tip: "Nowadays, the full set of 3/3 is required in commercial contracts and by banks for payment purposes when seller agreed to transfer the original Bills of Lading to the buyer."
+    },
+    {
+      id: "cdoc21",
+      question: "What is the main purpose of a Certificate of Quantity?",
+      choices: [
+        "To show the product’s country of origin",
+        "To evidence the quantity supplied matches the sale contract",
+        "To list the vessel’s crew"
+      ],
+      correct: [1],
+      explanation: "The Certificate of Quantity is issued by a Refinery or an independent inspector to prove that the quantity supplied is in conformity with the contractual quantity.",
+      tip: "Generally, the Certificate of Quantity reflects the quantity loaded based on the measurements of the shore tank(s) at loadport."
+    },
+    {
+      id: "cdoc22",
+      question: "Which document is used to confirm the quality of the product loaded?",
+      choices: [
+        "Certificate of Quality",
+        "Ullage Report",
+        "Time Sheet"
+      ],
+      correct: [0],
+      explanation: "The Certificate of Quality confirms the product meets contract specifications.",
+      tip: "Operators use alternatively Certificate of Quality or Certificate of Analysis, although they are not exactly equivalent."
+    },
+    {
+      id: "cdoc23",
+      question: "What is an Ullage Report mainly used for?",
+      choices: [
+        "To calculate loaded quantities in vessel tanks",
+        "To issue the certificate of origin",
+        "To prepare the Bills of Lading"
+      ],
+      correct: [0],
+      explanation: "Ullage Reports are used to determine the quantity of oil loaded in each tank.",
+      tip: "The quantities in the vessel's tanks should not be used to establish the quantity on the Bills of Lading, except in specific cases."
+    },
+    {
+      id: "cdoc24",
+      question: "What is the main function of a Time Sheet (Statement of Facts/Time log)?",
+      choices: [
+        "To record all events during a call for laytime calculation",
+        "To show the loading terminal personnel’s working hours",
+        "To confirm timings for freight amount calculation"
+      ],
+      correct: [0],
+      explanation: "The Time Sheet records all relevant events for laytime counting when a vessel is calling at a port.",
+      tip: "To be enforceable against the Carrier/Shipowner for demurrage calculations purposes, the Time Sheet must be signed by the Master or an Officer on board."
+    },
+    
+{
+  id: "cdoc25",
+  question: "What does a Certificate of Origin indicate?",
+  choices: [
+    "The vessel’s last port of call",
+    "The nationality of the product",
+    "The place where the product was sold"
+  ],
+  correct: [1],
+  explanation: "The Certificate of Origin shows the product’s country of production. Tip: The origin of the goods is the country of production or the country where the product underwent a substantial transformation."
+},
+{
+  id: "cdoc26",
+  question: "Why is a Certificate of Origin important for customs?",
+  choices: [
+    "It helps calculate import duties",
+    "It shows the vessel’s last load port",
+    "It lists the ship’s crew for emigration authorities"
+  ],
+  correct: [0],
+  explanation: "Customs use the Certificate of Origin to determine duties and trade policies. Tip: Depending on the commodity, the country of production and/or the producer, antidumping or countervailing duties can be applied by the importing country based on the origin of the goods."
+},
+{
+  id: "cdoc27",
+  question: "What is a Master’s Receipt for Samples?",
+  choices: [
+    "Proof that cargo samples were delivered to the Master",
+    "Proof that the Master remitted to the loading terminal, samples from his vessel",
+    "Proof of delivery of cargo samples to the underwriters to insure the goods"
+  ],
+  correct: [0],
+  explanation: "It confirms the Master received cargo samples to be used in case of joint analysis in the frame of a quality claim. Tip: Request the necessary number of samples from all sources: shore tank(s), shoreline, MLA, ship’s manifold; useful in case of quality claim."
+},
+{
+  id: "cdoc28",
+  question: "Who should sign the Master’s Receipt for Samples?",
+  choices: [
+    "The buyer",
+    "The Master or authorized officer",
+    "The customs agent"
+  ],
+  correct: [1],
+  explanation: "The Master or an authorized officer on board must sign the receipt. Tip: To be enforceable against the Carrier/Shipowner, the receipt must be signed by the Master or an officer on board."
+},
+{
+  id: "cdoc29",
+  question: "What is the main use of a Master’s Receipt for Documents?",
+  choices: [
+    "To confirm that the vessel’s carries on board the necessary insurance certificates",
+    "To confirm what original documents have been put on board care of Master for the receivers",
+    "To confirm that Master has remitted the documents to the shore personnel"
+  ],
+  correct: [1],
+  explanation: "It proves that the required documents as per documentary instructions are on board the vessel. Tip: No original Bills of Lading or Certificate of Origin should be placed on board to avoid customs and payment issues."
+},
+{
+  id: "cdoc30",
+  question: "What is a Cargo Manifest?",
+  choices: [
+    "A list of all cargo items on board the vessel for customs",
+    "A list of crew members and their nationalities for customs",
+    "A list of vessel repairs and spare parts"
+  ],
+  correct: [0],
+  explanation: "The Cargo Manifest lists all cargo on board for customs clearance and official use. Tip: Promote the use of a copy of the Cargo Manifest with your buyer instead of a non-negotiable copy of the Bills of Lading for customs purposes."
+},
+{
+  id: "cdoc31",
+  question: "What is the main purpose of a Tank Inspection Report?",
+  choices: [
+    "To document the size of each vessel’s tank and their equipment (pump, line etc.)",
+    "To confirm the vessel’s tanks are in apparent suitable condition to carry the cargo",
+    "To list the vessel’s last 20 ports of call"
+  ],
+  correct: [1],
+  explanation: "The Tank Inspection Report confirms tanks are in apparent good order before loading. Tip: It is not the same as the Ship’s Tanks Cleanliness Certificate, which requires physical entry into tanks."
+},
+{
+  id: "cdoc32",
+  question: "What does VEF (Vessel Experience Factor) measure?",
+  choices: [
+    "The vessel’s speed variation during the sailed portion of the voyage",
+    "The historical difference between ship and shore quantity figures",
+    "The product’s density difference between each call"
+  ],
+  correct: [1],
+  explanation: "The VEF is used to assess discrepancies between the cargo quantities reported by a vessel and those measured at the shore terminal. Tip: A reliable VEF is typically built using data from 20 eligible voyages, excluding maiden voyages."
+},
+{
+  id: "cdoc33",
+  question: "What is the acceptable maximum difference between shore and ship figures at load port?",
+  choices: [
+    "5%",
+    "0.3%",
+    "10%"
+  ],
+  correct: [1],
+  explanation: "A difference of 0.3% maximum is usually accepted, above it will trigger an investigation. Tip: Insurance deductibles often start at 0.5%, so minimizing discrepancies is critical."
+},
+  {
+    id: "cdoc34",
+    question: "What is a Safety Data Sheet (SDS)?",
+    choices: [
+      "A document listing safety and hazard information for chemicals",
+      "A document showing vessel on-board safety guidelines and procedure",
+      "A document listing crew HSE training qualifications"
+    ],
+    correct: [0],
+    explanation: "The SDS lists safety and hazard information for chemicals and products. Tip:It should follow the Globally Harmonized System (GHS) format with 16 sections.",
+  },
+  {
+    id: "cdoc35",
+    question: "Who is responsible for issuing a Safety Data Sheet?",
+    choices: [
+      "The vessel’s Master",
+      "The manufacturer of the product or the seller depending on the loading place",
+      "The insurance broker"
+    ],
+    correct: [1],
+    explanation: "The manufacturer or seller must issue the SDS in the supply chain.Tip:Always verify SDS before concluding a transaction to ensure compliance.",
+  },
+  {
+    id: "cdoc36",
+    question: "What is the main communication tool for safe handling of chemicals?",
+    choices: [
+      "The vessel’s logbook",
+      "The Safety Data Sheet",
+      "The inspector’s report"
+    ],
+    correct: [1],
+    explanation: "The SDS is the main tool for communicating safe handling instructions.Tip: Ensure SDS is shared with all stakeholders for HSE compliance.",
+  },
+  {
+    id: "cdoc37",
+    question: "What should a Safety Data Sheet comply with in the EU?",
+    choices: [
+      "GHS standard format",
+      "Vessel registration rules",
+      "Port authority guidelines"
+    ],
+    correct: [0],
+    explanation: "In the EU, the SDS must comply with the GHS standard format.Tip:GHS is a UN guideline, but implementation varies by country.",
+  },
+  {
+    id: "cdoc38",
+    question: "When handling part-cargo deliveries, what should each buyer receive?",
+    choices: [
+      "Only a copy of the invoice",
+      "The same set of documents as a full cargo buyer, e.g. one full set of 3/3 original Bills of Lading",
+      "Only a certificate of quality"
+    ],
+    correct: [1],
+    explanation: "Each buyer of a part-cargo is entitled to the same set of documents as a full cargo buyer. Tip:Anticipate the number of buyers to ensure adequate documentary instructions.",
+  },
+  {
+    id: "cdoc39",
+    question: "Who can prepare the draft of Bills of Lading?",
+    choices: [
+      "Only a Refinery",
+      "Several parties: refinery, terminal, inspectors, agents",
+      "Only the charterer"
+    ],
+    correct: [1],
+    explanation: "Bills of Lading can be prepared by all listed parties.Tip:Only the Master or its maritime agents can issue (sign) the Bills of Lading.",
+  },
+  {
+    id: "cdoc40",
+    question: "What should you do if a buyer requests the original Bill of Lading to be put on board?",
+    choices: [
+      "Always comply",
+      "Review the case with OTS customs and shipping documents expert",
+      "Reject the request"
+    ],
+    correct: [1],
+    explanation: "No original Bill of Lading should be put on board; review such requests with a specialist.Tip:In rare cases, compliance may be allowed after thorough analysis and consultation.",
+  },
+  {
+    id: "cdoc41",
+    question: "Which document confirms the vessel is ready for operations?",
+    choices: ["Notice of Readiness", "Time Sheet", "Cargo Manifest", "LOI"],
+    correct: [0],
+    explanation: "The Notice of Readiness confirms the vessel is ready for loading/discharge."
+  },
+  {
+    id: "cdoc42",
+    question: "Which documents are used to verify cargo details at discharge?",
+    choices: ["Cargo Manifest", "Certificate of Quantity", "Certificate of Origin", "LOI"],
+    correct: [0,1,2],
+    explanation: "Cargo Manifest, Quantity and Origin certificates are used to verify cargo details."
+  },
+  {
+    id: "cdoc43",
+    question: "Which document confirms the cargo has been shipped?",
+    choices: ["Shipped B/L", "Received for Shipment B/L", "LOI", "Cargo Manifest"],
+    correct: [0],
+    explanation: "Shipped B/L confirms cargo has been loaded onboard."
+  },
+  {
+    id: "cdoc44",
+    question: "Which document is used to confirm sample delivery?",
+    choices: ["Master’s Receipt for Samples", "Certificate of Quality", "LOI", "Cargo Manifest"],
+    correct: [0],
+    explanation: "Master’s Receipt for Samples confirms delivery of cargo samples onboard."
+  },
+  {
+    id: "cdoc45",
+    question: "Which documents are used to confirm cargo readiness?",
+    choices: ["Notice of Readiness", "Tank Inspection Report", "Certificate of Quantity", "Time Sheet"],
+    correct: [0,1],
+    explanation: "Notice of Readiness and Tank Inspection confirm vessel and tank readiness."
+  },
+  {
+    id: "cdoc46",
+    question: "Which documents are used to support customs declarations?",
+    choices: ["Certificate of Origin", "Cargo Manifest", "Commercial Invoice", "LOI"],
+    correct: [0,1,2],
+    explanation: "Customs declarations rely on Origin certificate, Manifest and Invoice."
+  },
+  {
+    id: "cdoc47",
+    question: "Which document confirms the cargo is free from contamination?",
+    choices: ["Tank Inspection Report", "Certificate of Quality", "LOI", "Cargo Manifest"],
+    correct: [0,1],
+    explanation: "Tank Inspection and Quality Certificate confirm cargo cleanliness."
+  },
+  {
+    id: "cdoc48",
+    question: "Which document confirms the cargo quantity at loading?",
+    choices: ["Certificate of Quantity", "Ullage Report", "Cargo Manifest", "LOI"],
+    correct: [0,1],
+    explanation: "Certificate of Quantity and Ullage Report confirm loaded volume."
+  },
+  {
+    id: "cdoc49",
+    question: "Which document is used to confirm cargo ownership?",
+    choices: ["Bill of Lading", "LOI", "Certificate of Origin", "Cargo Manifest"],
+    correct: [0],
+    explanation: "The Bill of Lading acts as a document of title confirming ownership."
+  },
+  {
+    id: "cdoc50",
+    question: "Which documents are required for payment under a documentary sale?",
+    choices: ["Original B/L", "Certificate of Origin", "Commercial Invoice", "All of the above"],
+    correct: [3],
+    explanation: "All listed documents are required for payment under documentary sale terms."
+  }
 
   ]
 },
@@ -7803,5 +7978,6 @@ const monthlyContestQuestions = {
   </script>
 </body>
 </html>
+
 
 
