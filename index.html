@@ -7538,7 +7538,7 @@ function updateMonthlyContestButton() {
     const btn = document.getElementById("monthlyContestBtn");
     if (!btn) return;
     const day = new Date().getDate();
-    if (day >= 02 && day <= 30) {
+    if (day >= 20 && day <= 30) {
         btn.disabled = false;
         btn.style.opacity = "1";
     } else {
@@ -7818,59 +7818,216 @@ function finishMonthlyContest() {
 const monthlyContestQuestions = {
     general_ops_january: [
         {
-        question: "When is the monthly competition session open?",
+        question: "What are the three main legal functions of a Bills of Lading?",
         choices: [
-            "From the 1st to the 10th of each month",
-            "From the 5th to the 15th of each month",
-            "From the 20th to the 30th of each month",
-            "Throughout the entire month"
+            "Customs clearance, insurance coverage, document of title",
+            "Contract of carriage, receipt of goods, document of title",
+            "Cargo description, freight payment, receipt of goods",
+            "Quantity control, conditions of carriage, laytime calculation"
         ],
-        answer: "From the 20th to the 30th of each month",
-        explanation: "The monthly competition is scheduled to run from the 20th to the 30th of each month."
+        answer: "Contract of carriage, receipt of goods, document of title",
+        explanation: "A Bills of Lading is evidence of the contract of carriage between the Shipper and the Carrier (so long as the original Bills remain in the Shipper’s hands), proof that the goods were received on board the vessel under the care of the Carrier, and acts as a document of title hence it must be issued in negotiable form to allow transfer when required by the commercial contract (sale FOB, CFR & CIF)."
     },
     {
-        question: "What is the prize awarded to the top 3 players of the monthly competition?",
+        question: "Which type of Bills of Lading allows transfer of ownership by endorsement?",
         choices: [
-            "A front position",
-            "A significant cash bonus",
-            "A bottle of champagne",
-            "No prize, it is only for fun"
+            "Straight Bills of Lading",
+            "To Order Bills of Lading",
+            "Sea Waybills",
+            "Received for Shipment Bills of Lading"
         ],
-        answer: "A bottle of champagne",
-        explanation: "The top three players are rewarded with a bottle of champagne."
+        answer: "To Order Bills of Lading",
+        explanation: "A “To Order” Bills of Lading is negotiable and allows transfer of ownership by endorsement. If the words “to the order of” are missing in front of the Consignee’s name, you are facing “straight Bills of Lading” which are not negotiable."
     },
     {
-        question: "Who reviewed the questions for each theme?",
+        question: "Who is legally entitled to claim the goods from the Carrier under a Bills of Lading?",
         choices: [
-            "Subject-matter experts for each theme",
-            "Andrea Maqueda",
-            "ChatGPT and Ghislaine",
-            "Ghislaine only"
+            "Notify Party",
+            "Shipper",
+            "Consignee",
+            "Charterer"
         ],
-        answer: "Subject-matter experts for each theme",
-        explanation: "Each theme has been reviewed and validated by dedicated subject-matter experts."
+        answer: "Consignee",
+        explanation: "The Consignee named in the Bills of Lading or its Transferee can claim the goods at discharge port upon presentation to Master of an original Bills of Lading in its name."
     },
     {
-        question: "How are additional themes unlocked?",
+        question: "What is an Ullage Report mainly used for?",
         choices: [
-            "Themes are unlocked automatically",
-            "After answering correctly 50 questions within a theme",
-            "After completing 50 questions regardless of the score",
-            "Two themes are unlocked every month"
+            "To calculate loaded quantities in vessel tanks",
+            "To issue the certificate of origin",
+            "To prepare the Bills of Lading"
         ],
-        answer: "After answering correctly 50 questions within a theme",
-        explanation: "New themes become available once 50 questions have been answered correctly within a given theme."
+        answer: "To calculate loaded quantities in vessel tanks",
+        explanation: "Ullage Reports are used to determine the quantity of oil loaded in each tank. Tip: The quantities in the vessel's tanks should not be used to establish the quantity on the Bills of Lading, except in specific cases, such as when loading directly from a running refinery. In these instances, the seller and buyer may agree to deviate from industry standards and base the shipped quantity on the vessel's figures rather than the shore tank measurements."
     },
     {
-        question: "Where can users find the reference documents to answer the questions?",
+        question: "What does a Certificate of Origin indicate?",
         choices: [
-            "In the Path / Training Library",
-            "In Medyssis",
-            "By contacting Ghislaine",
-            "Using GPT"
+            "The vessel’s last port of call",
+            "The nationality of the product",
+            "The place where the product was sold"
         ],
-        answer: "In the Path / Training Library",
-        explanation: "All reference documents are available in the Path / Training Library."
+        answer: "The nationality of the product",
+        explanation: "The Certificate of Origin shows the product’s country of production. Tip: the origin of the goods is the country of production or the country where the product underwent a substantial transformation."
+    },
+    {
+        question: "Why is a Certificate of Origin important for customs?",
+        choices: [
+            "It helps calculate import duties",
+            "It shows the vessel’s last load port",
+            "It lists the ship’s crew for emigration authorities"
+        ],
+        answer: "It helps calculate import duties",
+        explanation: "Customs use the Certificate of Origin to determine duties and trade policies. Tip: depending on the commodity, the country of production and/or the producer, antidumping or countervailing duties can be applied by the importing country based on the origin of the goods."
+    },
+    {
+        question: "What is the role of the Notify Party on Bills of Lading?",
+        choices: [
+            "Receives the goods",
+            "Is informed of shipment arrival",
+            "Pays the freight",
+            "Issues the Bills of Lading"
+        ],
+        answer: "Is informed of shipment arrival",
+        explanation: "The Notify Party is only informed of the shipment’s arrival and cannot claim the goods from the Carrier upon production of a copy of the Bill of lading."
+    },
+    {
+        question: "What is the main risk of delivering cargo without presentation of the original Bills of Lading at discharge port?",
+        choices: [
+            "Delay in customs clearance",
+            "Loss of insurance",
+            "Misdelivery claim and legal dispute",
+            "Higher freight charges"
+        ],
+        answer: "Misdelivery claim and legal dispute",
+        explanation: "Delivering cargo without the original bills of lading can result in claims of misdelivery and legal disputes. This is particularly problematic in cases of fraud, where the cargo may be delivered to someone who is not the rightful holder or consignee of the original Bills. Such individuals might attempt to claim an interest in the cargo using a tampered or counterfeit copy of the Bills."
+    },
+    {
+        question: "What is the acceptable maximum difference between shore and ship figures at load port?",
+        choices: [
+            "5%",
+            "0.3%",
+            "10%"
+        ],
+        answer: "0.3%",
+        explanation: "A difference of 0.3% maximum is usually accepted, above it will trigger an investigation. Tip: Remember that standard market insurance terms typically include a deductible of 0.5% of the Bills of Lading quantity. Therefore, it’s essential to minimize discrepancies between the shore and ship measurements at the load port!"
+    },
+    {
+        question: "What should a Safety Data Sheet comply with in the EU?",
+        choices: [
+            "GHS standard format",
+            "Vessel registration rules",
+            "Port authority guidelines"
+        ],
+        answer: "GHS standard format",
+        explanation: "In the EU, the SDS must comply with the GHS standard format. Tip: although the GHS standard was created by the United Nations to harmonize chemical hazard communication, the GHS it is not legally binding, it is a guideline. Each country adopts it differently, which means SDSs still vary significantly between jurisdictions."
+    },
+    {
+        question: "When handling part-cargo deliveries, what should each buyer receive?",
+        choices: [
+            "Only a copy of the invoice",
+            "The same set of documents as a full cargo buyer, e.g. one full set of 3/3 original Bills of Lading",
+            "Only a certificate of quality"
+        ],
+        answer: "The same set of documents as a full cargo buyer, e.g. one full set of 3/3 original Bills of Lading",
+        explanation: "Each buyer of a part-cargo is entitled to the same set of documents as a full cargo buyer. Tip: you must anticipate how many buyers there will be for a given cargo, to ensure you send adequate documentary instructions to the supplier to get one full set of shipping documents for each buyer. Even more so if document L/C are issued for payment purposes."
+    },
+    {
+        question: "Who can prepare the draft of Bills of Lading?",
+        choices: [
+            "Only a Refinery",
+            "Several parties: refinery, terminal, inspectors, agents",
+            "Only the charterer"
+        ],
+        answer: "Several parties: refinery, terminal, inspectors, agents",
+        explanation: "Bills of Lading can be prepared by all listed parties. Tip: only the Master or its maritime agents can “issue” the Bills of Lading, i.e. sign the document."
+    },
+    {
+        question: "What should you do if a buyer requests the original Bill of Lading to be put on board?",
+        choices: [
+            "Always comply",
+            "Review the case with OTS customs and shipping documents expert",
+            "Reject the request"
+        ],
+        answer: "Review the case with OTS customs and shipping documents expert",
+        explanation: "No original Bill of Lading should be put on board; review such requests with a specialist. Tip: In rare cases, after a thorough analysis of all the facts, including the payment terms and delivery constraints at the discharge port, and in consultation with the Credit team, we may allow for compliance with such a request."
+    },
+    {
+        question: "Historically, what is the main reason for issuing Bills of Lading in sets of three originals?",
+        choices: [
+            "For customs, insurance, and freight purposes",
+            "For legal and operational reasons: one for Shipper, one for Consignee, one for Carrier",
+            "For shipping reasons: one for Carrier, one for Agents, one for Shipowner",
+            "For loading terminal reasons: one for Refinery, one for Control Room, one for Customs"
+        ],
+        answer: "For legal and operational reasons: one for Shipper, one for Consignee, one for Carrier",
+        explanation: "Traditionally, three originals were issued to allow remittance of one copy to Shipper, Consignee, and Carrier. Nowadays, the full set of 3/3 is required in commercial contracts and by banks for payment purposes when seller agreed to transfer the original Bills of Lading to the buyer."
+    },
+    {
+        question: "What is the main function of a Sea WayBills?",
+        choices: [
+            "It is negotiable and transfers title",
+            "It serves as a document of title",
+            "It is non-negotiable and only acts as a receipt and delivery instruction",
+            "It is used for customs clearance only"
+        ],
+        answer: "It is non-negotiable and only acts as a receipt and delivery instruction",
+        explanation: "A Sea Waybill is non-negotiable and is used as a receipt and delivery instruction, not as a document of title. It cannot be transferred by endorsement. Only the named Consignee can take delivery."
+    },
+    {
+        question: "What is the effect of antedating or post-dating a Bills of Lading?",
+        choices: [
+            "It is allowed if agreed by parties",
+            "It is considered fraudulent and can void insurance",
+            "It speeds up payment",
+            "It is required for customs"
+        ],
+        answer: "It is considered fraudulent and can void insurance",
+        explanation: "Antedating or post-dating is considered fraudulent and can void P&I insurance. The Bills of lading date is the date on which the entire shipment it covers is on board the vessel care of the Master, i.e. it is the Completion of Loading date."
+    },
+    {
+        question: "What is the main advantage of incorporating the Charter-Party terms in the Bills of Lading?",
+        choices: [
+            "To provide legal clarity in the event of a dispute involving the Carrier brought under the Bills",
+            "To facilitate the payment of the freight",
+            "To enable the charterer to change the delivery address at any time without notifying the Carrier",
+            "To authorise the shipper to request a copy of the Charter-Party"
+        ],
+        answer: "To provide legal clarity in the event of a dispute involving the Carrier brought under the Bills",
+        explanation: "Incorporating the Charter-Party (C/P) terms in a Bill of Lading serves to provide legal clarity in the event of a dispute involving the Carrier. By including these terms, all parties have a clear understanding of their rights and obligations, which can help resolve disputes more effectively if they arise."
+    },
+    {
+        question: "What is the difference between a “Shipped” and a “Received for Shipment” Bills of Lading?",
+        choices: [
+            "No difference",
+            "“Shipped” confirms cargo is loaded; “Received for Shipment” confirms cargo is received but not yet loaded",
+            "“Received for Shipment” is negotiable",
+            "“Shipped” is only for customs"
+        ],
+        answer: "“Shipped” confirms cargo is loaded; “Received for Shipment” confirms cargo is received but not yet loaded",
+        explanation: "“Shipped” means cargo is on board; “Received for Shipment” means cargo is received but not yet loaded. Typically, in soft commodity, when an isotank is brought to the jetty and entrusted to the Master for subsequent loading on board the vessel. Supplier can request Master to sign a “received for shipment” Bill of lading."
+    },
+    {
+        question: "What is the main legal framework governing Bills of Lading in international trade?",
+        choices: [
+            "International conventions such as Hague-Visby Rules",
+            "UCP 600",
+            "Incoterms",
+            "ISPS Code"
+        ],
+        answer: "International conventions such as Hague-Visby Rules",
+        explanation: "The Hague-Visby Rules is a widely adopted legal framework for Bills of Lading in international trade together with the Hamburg Rules, the Rotterdam Rules…"
+    },
+    {
+        question: "What is the main risk for the Carrier when accepting a shipping LOI for delivery without the original Bills of Lading?",
+        choices: [
+            "Delay in discharge",
+            "Loss of title",
+            "Loss of P&I insurance cover in case of misdelivery claim",
+            "Higher port charges"
+        ],
+        answer: "Loss of P&I insurance cover in case of misdelivery claim",
+        explanation: "P&I insurance does not cover misdelivery claim when cargo is released against a shipping LOI, IGP&I type A or B or C."
     }
 ],
 
@@ -7973,6 +8130,7 @@ const monthlyContestQuestions = {
   </script>
 </body>
 </html>
+
 
 
 
