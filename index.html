@@ -2,517 +2,1594 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8" />
-<title>Quiz'Ops</title>
+<title>Quiz'Ops — Oil & Energy Training</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
- 
-  <!-- Manifest pour PWA -->
 <link rel="manifest" href="manifest.json">
- 
-  <!-- Couleur de la barre de statut -->
-<meta name="theme-color" content="#004aad">
- 
-  <!-- Pour iOS : rendre l'app installable -->
+<meta name="theme-color" content="#0a0a0a">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
- 
-  <!-- Icônes iOS -->
 <link rel="apple-touch-icon" href="icons/icon-192.png">
- 
-  <!-- Si tu veux changer l'icône pour différents formats -->
 <link rel="apple-touch-icon" sizes="152x152" href="icons/icon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-512.png">
-  
- <style>
-  :root {
-    --bg:#f4f7fa; --text:#333; --card:#fff; --primary:#1a5276;
-    --muted:#ecf0f1; --border:#d0d7de; --good:#28a745; --bad:#dc3545;
-    --energy:#ff6b00; /* couleur énergie (orange vif) */
-  }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  * { box-sizing: border-box; }
+<style>
+/* ═══════════════════════════════════════════════
+   QUIZ'OPS — PREMIUM INDUSTRIAL DESIGN SYSTEM
+   Direction: Oil Rig × Bloomberg Terminal × Luxury
+   Palette: Obsidian · Amber · Chromium
+═══════════════════════════════════════════════ */
 
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--bg) url("https://images.unsplash.com/photo-1581094651181-3592e59b95a0?auto=format&fit=crop&w=1400&q=80") no-repeat center center fixed;
-    background-size: cover;
-    color: var(--text);
-    margin: 0;
-    padding: 0;
-  }
+:root {
+  /* ── TotalEnergies Palette ──
+     Primary Red:   #E2001A  (TotalEnergies brand red)
+     Secondary:     #F16E00  (warm orange)
+     Deep Navy:     #003366  (anchor/trust)
+     Backgrounds:   warm off-white → soft cream
+  */
 
-  .overlay {
-    background: rgba(255,255,255,0.95);
-    min-height: 100vh;
-    padding: 32px;
-  }
+  /* Backgrounds — warm light */
+  --void: #f7f4f0;           /* page bg: warm cream */
+  --obsidian: #f0ece6;       /* slightly deeper cream */
+  --carbon: #ffffff;         /* card bg: clean white */
+  --steel: #f5f2ee;          /* input bg: soft warm white */
+  --slate: #ede9e3;          /* hover bg */
+  --mist: #e5e0d8;           /* subtle dividers bg */
 
-  .container {
-    max-width: 980px;
-    margin: auto;
-    background: var(--card);
-    padding: 28px;
-    border-radius: 16px;
-    box-shadow: 0 6px 24px rgba(0,0,0,.12);
-    animation: fadeIn 0.45s ease;
-  }
+  /* Borders — warm tones */
+  --chrome-dim: rgba(0,0,0,0.07);
+  --chrome-soft: rgba(0,0,0,0.12);
+  --chrome-bright: rgba(0,0,0,0.20);
 
-  h1,h2 {
-    color: var(--primary);
-    text-align: center;
-    margin: 0 0 12px;
-  }
+  /* TotalEnergies accent — Red × Orange */
+  --amber: #E2001A;           /* TE Red — primary CTA */
+  --amber-hot: #c8001a;       /* darker red on hover */
+  --amber-dim: rgba(226,0,26,0.08);
+  --amber-glow: rgba(226,0,26,0.20);
 
-  .themes {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
-    gap: 16px;
-    margin-top: 20px;
-  }
+  /* Secondary accent — TE Orange */
+  --te-orange: #F16E00;
+  --te-orange-dim: rgba(241,110,0,0.10);
+  --te-orange-glow: rgba(241,110,0,0.22);
 
-  .theme-button {
-    background: var(--muted);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 18px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: 600;
-    text-align: center;
-    transition: transform 0.18s, box-shadow 0.18s;
-    user-select: none;
-    min-height:110px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-  }
+  /* Deep anchor navy */
+  --te-navy: #003366;
+  --te-navy-dim: rgba(0,51,102,0.08);
 
-  .theme-button img {
-    width: 48px;
-    height: 48px;
-    margin-bottom: 8px;
-  }
+  /* Signal colors */
+  --signal-green: #16a34a;
+  --signal-green-bg: rgba(22,163,74,0.10);
+  --signal-red: #E2001A;
+  --signal-red-bg: rgba(226,0,26,0.08);
+  --signal-blue: #003366;
+  --signal-blue-bg: rgba(0,51,102,0.08);
 
-  .theme-button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-  }
+  /* Text — dark on light */
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a6a;
+  --text-tertiary: #8888aa;
 
-  .question {
-    font-size: 1.2rem;
-    margin: 14px 0;
-    font-weight: 600;
-  }
+  /* Type */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  .choice {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 14px;
-    margin-bottom: 12px;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    background: #fff;
-    cursor: pointer;
-    transition: background 0.12s, transform 0.12s;
-  }
-
-  .choice:hover {
-    background: #f4f6f8;
-    transform: translateY(-2px);
-  }
-
-  .choice.correct {
-    background-color: #d4edda !important;
-    border-color: var(--good) !important;
-  }
-
-  .choice.wrong {
-    background-color: #f8d7da !important;
-    border-color: var(--bad) !important;
-  }
-
-  .submit-btn {
-    display: inline-block;
-    margin-top: 12px;
-    background: var(--primary);
-    color: white;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 10px;
-    font-size: 0.98rem;
-    cursor: pointer;
-    transition: background 0.12s, transform 0.12s;
-  }
-
-  .submit-btn:hover {
-    background: #154360;
-    transform: scale(1.02);
-  }
-
-  .result {
-    margin-top: 8px;
-    font-weight: 700;
-  }
-
-  .explanation {
-    margin-top: 10px;
-    padding: 12px;
-    border-left: 4px solid var(--primary);
-    background: #f3f6f8;
-    border-radius: 6px;
-    line-height: 1.4;
-  }
-
-  .row {
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-
-  #nextBtn, #prevBtn, #backBtn {
-    display: none;
-    margin-top: 14px;
-    padding: 10px 16px;
-    border-radius: 10px;
-  }
-
-  #nextBtn {
-    border: 1px solid var(--primary);
-    background: var(--primary);
-    color: #fff;
-  }
-
-  #prevBtn, #backBtn {
-    border: 1px solid var(--border);
-    background: var(--muted);
-  }
-
-  .score {
-    margin-top: 6px;
-    text-align: center;
-    color: #555;
-  }
-
-  .footer-note {
-    margin-top: 18px;
-    font-size: 12px;
-    color: #666;
-    text-align: center;
-  }
-
-  .progress-bar {
-    margin: 12px 0;
-    height: 20px;
-    width: 100%;
-    background: #eee;
-    border-radius: 12px;
-    overflow: hidden;
-  }
-
-  .progress-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--primary);
-    text-align: center;
-    color: #fff;
-    font-size: 12px;
-    line-height: 20px;
-    transition: width 0.3s ease;
-  }
-
-  #login-container {
-    text-align:center;
-  }
-
-  #login-container input {
-    padding: 12px;
-    width: 70%;
-    max-width: 320px;
-    margin-bottom: 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-  }
-
-  #login-container button {
-    background: var(--primary);
-    color: #fff;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-
-  #logoutBtn {
-    margin-top: 8px;
-    background: transparent;
-    color: #666;
-    border: none;
-    cursor: pointer;
-    text-decoration: underline;
-  }
-
-  #progress-overview {
-    margin-top: 24px;
-  }
-
-  .progress-card {
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 12px;
-    margin-top: 10px;
-    background: #fff;
-  }
-
-  .progress-mini {
-    height: 10px;
-    background:#eee;
-    border-radius: 8px;
-    overflow:hidden;
-  }
-
-  .progress-mini-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--primary);
-    transition: width .3s;
-  }
-
-  .mini-row {
-    display:flex;
-    justify-content:space-between;
-    font-size: 12px;
-    color:#555;
-    margin-top:6px;
-  }
-
-  /* === Section défis mise en valeur === */
-  #challenge-section {
-    background: linear-gradient(135deg, #ffffff, #fdf4ec);
-    border: 2px solid #ffe1c4;
-    border-radius: 18px;
-    padding: 24px;
-    margin-top: 40px;
-    box-shadow: 0 6px 20px rgba(255, 107, 0, 0.15);
-    text-align: center;
-    animation: fadeIn 0.5s ease;
-  }
-
-  #challenge-section h2 {
-    color: var(--energy);
-    margin-bottom: 20px;
-  }
-
-  .challenge-actions {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-    flex-wrap: wrap;
-  }
-
-  .challenge-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 26px;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    border: none;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-
-  /* Bouton "Lancer un défi" */
-  #showChallengeBtn {
-    background: linear-gradient(90deg, var(--primary), #2471a3);
-    color: #fff;
-  }
-
-  #showChallengeBtn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(26,82,118,0.4);
-  }
-
-  /* Bouton "Défis reçus" */
-  #showReceivedChallengesBtn {
-    background: linear-gradient(90deg, var(--energy), #ff8c3a);
-    color: #fff;
-  }
-
-  #showReceivedChallengesBtn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(255,107,0,0.4);
-  }
-
-  /* Badge compteur */
-  .challenge-btn .badge {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    background: var(--bad);
-    color: #fff;
-    border-radius: 50%;
-    padding: 3px 7px;
-    font-size: 11px;
-    font-weight: bold;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* petites améliorations responsive */
-  @media (max-width:520px){
-    .theme-button img { width: 40px; height: 40px; }
-    #login-container input { width: 90%; }
-  }
-  
-  #overallProgressContainer {
-  display: none;
+  /* Layout */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --max-w: 1000px;
 }
 
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--void);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--obsidian); }
+::-webkit-scrollbar-thumb { background: var(--mist); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--amber); }
+
+/* ══════════════════════════════════════
+   BACKGROUND CANVAS — cinematic depth
+══════════════════════════════════════ */
+.overlay {
+  min-height: 100vh;
+  padding: 0;
+  position: relative;
+}
+
+/* Warm gradient layer */
+.overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 130% 60% at 5% 0%, rgba(241,110,0,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 70% at 95% 100%, rgba(226,0,26,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 50% 50% at 50% 50%, rgba(247,244,240,0.4) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Subtle dot grid */
+.overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 4px 20px 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════
+   TOPBAR — always present
+══════════════════════════════════════ */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 0;
+  margin-bottom: 0;
+}
+
+.topbar-logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+  color: var(--amber);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-logo .logo-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--amber);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--amber), 0 0 24px var(--amber-glow);
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ══════════════════════════════════════
+   HERO SECTION — login backdrop
+══════════════════════════════════════ */
+.hero-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.08;
+  filter: saturate(0.2) contrast(1.1) brightness(0.6);
+}
+
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(247,244,240,0.5) 0%,
+    rgba(247,244,240,0.75) 40%,
+    rgba(247,244,240,0.97) 100%
+  );
+}
+
+/* ══════════════════════════════════════
+   LOGIN PAGE
+══════════════════════════════════════ */
+#login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.login-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.login-eyebrow::before, .login-eyebrow::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(226,0,26,0.3), transparent);
+  width: 60px;
+  flex: none;
+}
+
+.login-headline {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 6rem);
+  letter-spacing: 0.06em;
+  line-height: 0.9;
+  text-align: center;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--te-navy) 0%, #1a3a6a 50%, var(--amber) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.login-sub {
+  font-size: 0.82rem;
+  color: var(--text-tertiary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.8),
+    0 24px 60px rgba(0,0,0,0.10),
+    0 8px 20px rgba(226,0,26,0.06),
+    inset 0 1px 0 rgba(255,255,255,1);
+}
+
+/* Input fields */
+.field-group {
+  margin-bottom: 14px;
+}
+
+.field-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+  font-family: var(--font-mono);
+}
+
+.field-input {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  background: var(--steel);
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.field-input::placeholder { color: var(--text-tertiary); }
+
+.field-input:focus {
+  border-color: var(--amber);
+  background: #fff;
+  box-shadow: 0 0 0 3px var(--amber-dim), 0 2px 8px rgba(226,0,26,0.06);
+}
+
+/* Primary button */
+.btn-primary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--amber) 0%, #c8001a 100%);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 50%);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #f5001e 0%, #a80015 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(226,0,26,0.35), 0 2px 8px rgba(226,0,26,0.2);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+/* Ghost button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  background: transparent;
+  border: 1px solid var(--chrome-soft);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: var(--amber-dim);
+}
+
+.login-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--chrome-dim);
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.forgot-link {
+  background: none;
+  border: none;
+  color: var(--text-tertiary);
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+
+.forgot-link:hover { color: var(--amber); }
+
+#forgotIDForm {
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--void);
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-sm);
+}
+
+#forgotIDForm input { margin-bottom: 10px; }
+
+#sendID {
+  padding: 9px 18px;
+  background: var(--obsidian);
+  border: 1px solid var(--chrome-soft);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#sendID:hover { border-color: var(--amber); color: var(--amber); }
+
+#forgotMessage { color: var(--signal-green); font-size: 0.8rem; margin-top: 8px; }
+
+/* ══════════════════════════════════════
+   SIGNUP PAGE
+══════════════════════════════════════ */
+#signup-container {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+#signup-container .login-card { max-width: 420px; }
+
+#signupMessage { color: var(--signal-green); font-size: 0.82rem; margin-top: 10px; text-align: center; }
+
+/* ══════════════════════════════════════
+   MAIN APP LAYOUT — after login
+══════════════════════════════════════ */
+
+/* ── Navbar ── */
+.app-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0 28px;
+  border-bottom: 1px solid var(--chrome-dim);
+  margin-bottom: 36px;
+}
+
+.app-nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  color: var(--amber);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-nav-logo span.live-dot {
+  width: 7px;
+  height: 7px;
+  background: var(--signal-green);
+  border-radius: 50%;
+  box-shadow: 0 0 8px rgba(22,163,74,0.5);
+  animation: blink 2s ease-in-out infinite;
+}
+
+.nav-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-user-email {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  font-family: var(--font-mono);
+}
+
+#logoutBtn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid var(--chrome-soft);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#logoutBtn:hover {
+  border-color: var(--signal-red);
+  color: var(--signal-red);
+  background: var(--signal-red-bg);
+}
+
+/* ── Section header ── */
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  letter-spacing: 0.06em;
+  color: var(--te-navy);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.section-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 28px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ── Overall progress banner ── */
+#overallProgressContainer {
+  display: none;
+  margin-bottom: 32px;
+}
+
+.overall-bar-wrap {
+  background: #fff;
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.overall-bar-label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+}
+
+.overall-bar-track {
+  flex: 1;
+  height: 8px;
+  background: var(--mist);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+#overallProgressFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--amber), var(--te-orange));
+  border-radius: 99px;
+  transition: width 0.8s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 10px var(--te-orange-glow);
+}
+
+.overall-bar-pct {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--amber);
+  min-width: 40px;
+  text-align: right;
+}
+
+/* ══════════════════════════════════════
+   THEMES GRID
+══════════════════════════════════════ */
+.themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.theme-button {
+  background: #fff;
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-md);
+  padding: 22px 16px 18px;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+  user-select: none;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* TE Red top accent */
+.theme-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--amber), var(--te-orange));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/* Orange glow corner */
+.theme-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle at 100% 100%, var(--te-orange-dim) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.theme-button:hover {
+  border-color: rgba(226,0,26,0.25);
+  background: var(--void);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(226,0,26,0.08);
+  color: var(--text-primary);
+}
+
+.theme-button:hover::before { opacity: 1; }
+.theme-button:hover::after { opacity: 1; }
+
+.theme-button:hover img {
+  filter: drop-shadow(0 4px 10px rgba(241,110,0,0.3)) brightness(1.05);
+  transform: scale(1.08);
+}
+
+.theme-button img {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 12px;
+  transition: all 0.3s;
+  filter: brightness(0.95) saturate(0.9);
+}
+
+.theme-btn-title {
+  line-height: 1.3;
+  margin-bottom: 12px;
+  flex: 1;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.theme-button.locked {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.theme-button.locked img {
+  filter: brightness(0.6) saturate(0);
+}
+
+.progress-mini {
+  width: 100%;
+  height: 4px;
+  background: var(--mist);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-mini-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--amber), var(--te-orange));
+  transition: width 0.5s ease;
+}
+
+.mini-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.62rem;
+  color: var(--text-tertiary);
+  margin-top: 6px;
+  width: 100%;
+  font-family: var(--font-mono);
+}
+
+/* ══════════════════════════════════════
+   CHALLENGE SECTION
+══════════════════════════════════════ */
+#challenge-section {
+  background: linear-gradient(135deg, #fff 0%, #fff8f5 100%);
+  border: 1px solid rgba(241,110,0,0.15);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(241,110,0,0.07);
+}
+
+#challenge-section::before {
+  content: '⚔';
+  position: absolute;
+  right: -10px;
+  top: -20px;
+  font-size: 8rem;
+  opacity: 0.03;
+  line-height: 1;
+}
+
+.challenge-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.challenge-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--amber-dim), var(--te-orange-dim));
+  border: 1px solid rgba(241,110,0,0.25);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.challenge-header-text h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.08em;
+  color: var(--te-navy);
+  text-align: center;
+  margin-bottom: 2px;
+}
+
+.challenge-header-text p {
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+.challenge-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.challenge-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+
+#showChallengeBtn {
+  background: linear-gradient(135deg, var(--amber), #c8001a);
+  color: #fff;
+  border-color: var(--amber);
+  box-shadow: 0 4px 14px rgba(226,0,26,0.25);
+}
+
+#showChallengeBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(226,0,26,0.35);
+}
+
+#showReceivedChallengesBtn {
+  background: transparent;
+  color: var(--te-orange);
+  border-color: rgba(241,110,0,0.4);
+}
+
+#showReceivedChallengesBtn:hover {
+  background: var(--te-orange-dim);
+  transform: translateY(-2px);
+}
+
+#topPlayersBtn {
+  background: transparent;
+  color: var(--te-navy);
+  border: 1px solid rgba(0,51,102,0.25);
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#topPlayersBtn:hover {
+  border-color: var(--te-navy);
+  background: var(--te-navy-dim);
+  color: var(--te-navy);
+}
+
+#monthlyContestBtn {
+  background: var(--steel);
+  border: 1px solid var(--chrome-dim);
+  color: var(--text-tertiary);
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: not-allowed;
+  opacity: 0.6;
+  margin-top: 10px;
+}
+  margin-top: 10px;
+}
+
+#challenge-form {
+  display: none;
+  margin-top: 16px;
+  padding: 18px;
+  background: var(--void);
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-sm);
+  display: none;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#challenge-form select {
+  flex: 1;
+  min-width: 160px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid var(--chrome-soft);
+  border-radius: var(--radius-xs);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  outline: none;
+  cursor: pointer;
+}
+
+#sendChallengeBtn {
+  padding: 10px 20px;
+  background: var(--amber);
+  border: none;
+  border-radius: var(--radius-xs);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+#sendChallengeBtn:hover { background: var(--amber-hot); }
+
+#my-challenges { margin-top: 16px; }
+
+#my-challenges h3 {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#topPlayersContainer {
+  display: none;
+  margin-top: 16px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid rgba(241,110,0,0.15);
+  border-radius: var(--radius-sm);
+}
+
+#topPlayersContainer h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════
+   QUIZ CONTAINER
+══════════════════════════════════════ */
+#quiz-container {
+  padding-top: 28px;
+}
+
+/* Theme title */
+#theme-title {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  color: var(--te-navy);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* ── Progress bar ── */
+.quiz-progress-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background: var(--steel);
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--amber), var(--amber-hot));
+  border-radius: 99px;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow: 0 0 8px var(--amber-glow);
+  font-size: 0;
+  color: transparent;
+}
+
+/* ── Score + Timer bar ── */
+.quiz-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.score {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  margin: 0;
+  text-align: left;
+}
+
+#timer {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--amber);
+  letter-spacing: 0.05em;
+  text-align: right;
+}
+
+#timer.urgent {
+  color: var(--signal-red);
+  animation: pulseRed 0.7s ease-in-out infinite;
+}
+
+@keyframes pulseRed {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ── Question card ── */
+.question {
+  background: #fff;
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-md);
+  padding: 28px 28px 24px;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--text-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.question::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--amber) 0%, var(--te-orange) 100%);
+}
+
+/* ── Answer choices ── */
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  margin-bottom: 8px;
+  border: 1px solid var(--chrome-dim);
+  border-left: 3px solid transparent;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  user-select: none;
+}
+
+.choice:hover {
+  border-left-color: var(--amber);
+  background: #fff8f8;
+  color: var(--text-primary);
+  transform: translateX(4px);
+  box-shadow: 0 4px 14px rgba(226,0,26,0.08);
+}
+
+.choice.selected {
+  border-color: var(--te-navy);
+  border-left: 3px solid var(--te-navy);
+  background: rgba(0,51,102,0.05);
+  color: var(--te-navy);
+  transform: translateX(4px);
+  box-shadow: 0 4px 14px rgba(0,51,102,0.10);
+}
+
+.choice.selected .choice-letter {
+  background: var(--te-navy);
+  border-color: var(--te-navy);
+  color: #fff;
+  font-weight: 700;
+}
+
+.choice-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: var(--void);
+  border: 1px solid var(--chrome-dim);
+  border-radius: 7px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  transition: all 0.18s;
+  z-index: 1;
+}
+
+.choice:hover .choice-letter {
+  background: var(--amber);
+  border-color: var(--amber);
+  color: #fff;
+}
+
+.choice.correct {
+  background: var(--signal-green-bg) !important;
+  border-color: var(--signal-green) !important;
+  color: #86efac !important;
+  transform: none;
+  box-shadow: 0 0 20px rgba(34,197,94,0.08), -3px 0 0 0 var(--signal-green);
+}
+
+.choice.correct .choice-letter {
+  background: var(--signal-green) !important;
+  border-color: var(--signal-green) !important;
+  color: #fff !important;
+}
+
+.choice.wrong {
+  background: var(--signal-red-bg) !important;
+  border-color: var(--signal-red) !important;
+  color: #fca5a5 !important;
+  transform: none;
+  box-shadow: -3px 0 0 0 var(--signal-red);
+}
+
+.choice.wrong .choice-letter {
+  background: var(--signal-red) !important;
+  border-color: var(--signal-red) !important;
+  color: #fff !important;
+}
+
+/* ── Submit button ── */
+.submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 13px 28px;
+  background: linear-gradient(135deg, var(--amber), #c8001a);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(226,0,26,0.25);
+}
+
+.submit-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+}
+
+.submit-btn:hover {
+  background: var(--amber-hot);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(232,160,32,0.4);
+}
+
+/* ── Result + explanation ── */
+.result {
+  margin-top: 14px;
+  padding: 12px 18px;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+}
+
+.result.correct-result {
+  background: var(--signal-green-bg);
+  border: 1px solid rgba(34,197,94,0.3);
+  color: #86efac;
+}
+
+.result.wrong-result {
+  background: var(--signal-red-bg);
+  border: 1px solid rgba(239,68,68,0.3);
+  color: #fca5a5;
+}
+
+.explanation {
+  margin-top: 10px;
+  padding: 18px 20px;
+  background: #fffaf8;
+  border: 1px solid rgba(241,110,0,0.15);
+  border-left: 3px solid var(--te-orange);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* ── Navigation row ── */
+.row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+#nextBtn, #prevBtn, #backBtn {
+  display: none;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#nextBtn {
+  background: linear-gradient(135deg, var(--amber), #c8001a);
+  border: none;
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(226,0,26,0.2);
+}
+
+#nextBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(226,0,26,0.35);
+}
+
+#prevBtn, #backBtn {
+  background: #fff;
+  border: 1px solid var(--chrome-dim);
+  color: var(--text-secondary);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+#prevBtn:hover, #backBtn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: var(--amber-dim);
+}
+
+.footer-note {
+  margin-top: 24px;
+  font-size: 0.72rem;
+  color: var(--text-tertiary);
+  text-align: center;
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+
+/* ══════════════════════════════════════
+   PROGRESS OVERVIEW
+══════════════════════════════════════ */
+#progress-overview { margin-top: 32px; }
+
+.progress-card {
+  background: #fff;
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  margin-top: 8px;
+  transition: border-color 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.progress-card:hover { border-color: rgba(232,160,32,0.25); }
+
+/* ══════════════════════════════════════
+   ADMIN PANEL
+══════════════════════════════════════ */
+#admin-panel {
+  padding-top: 28px;
+}
+
+#admin-panel h1 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--te-navy);
+}
+
+#logoutBtnAdmin {
+  display: block;
+  margin: 0 auto 20px;
+  padding: 9px 20px;
+  background: #fff;
+  border: 1px solid var(--chrome-dim);
+  border-radius: var(--radius-xs);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+#logoutBtnAdmin:hover { border-color: var(--signal-red); color: var(--signal-red); }
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInFast {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+#login-container, #signup-container { animation: fadeIn 0.6s ease both; }
+#theme-selection { animation: fadeIn 0.5s ease both; }
+#quiz-container { animation: fadeInFast 0.35s ease both; }
+.theme-button { animation: fadeInFast 0.4s ease both; }
+
+/* Stagger theme cards */
+.theme-button:nth-child(1) { animation-delay: 0.04s; }
+.theme-button:nth-child(2) { animation-delay: 0.08s; }
+.theme-button:nth-child(3) { animation-delay: 0.12s; }
+.theme-button:nth-child(4) { animation-delay: 0.16s; }
+.theme-button:nth-child(5) { animation-delay: 0.20s; }
+.theme-button:nth-child(6) { animation-delay: 0.24s; }
+.theme-button:nth-child(7) { animation-delay: 0.28s; }
+.theme-button:nth-child(8) { animation-delay: 0.32s; }
+.theme-button:nth-child(9) { animation-delay: 0.36s; }
+.theme-button:nth-child(10) { animation-delay: 0.40s; }
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 600px) {
+  .container { padding: 0 14px 60px; }
+  .themes { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+  .login-headline { font-size: 3.2rem; }
+  .login-card { padding: 28px 22px; }
+  #quiz-container, #admin-panel { padding-top: 20px; }
+  .quiz-meta { flex-direction: column; gap: 6px; text-align: center; }
+  .score, #timer { text-align: center; }
+}
 </style>
 </head>
+
 <body>
-  <div class="overlay">
-    <div class="container">
 
-     <!-- === LOGIN PAGE === -->
-      <div id="login-container">
-        <h1>🔑 Login to Quiz'Ops</h1>
-        <p><button onclick="showSignup()" style="background:none;border:none;color:var(--primary);cursor:pointer;text-decoration:underline;font-size:0.9rem;">First connexion ? Subscribe</button></p>
-        <p>Enter your email and password to start</p>
-		<p style="font-size:12px;color:#666;margin-top:6px;">
-  For your first login, please use the IGG number printed on your company card as your initial password.
-</p>
+<!-- Background image for login atmosphere -->
+<div style="position:fixed;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#E2001A 0%,#E2001A 40%,#F16E00 60%,#F16E00 100%);z-index:9999;"></div>
+<div class="hero-bg" id="heroBg">
+  <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1800&q=60" alt="" aria-hidden="true">
+</div>
 
-        <input type="email" id="emailInput" placeholder="your@email.com" />
-        <br>
-        <input type="password" id="passwordInput" placeholder="Password" />
-        <br>
-        <button onclick="login()">Login</button>
-        <!-- Bouton mot de passe oublié -->
-        <div style="margin-top:8px;">
-          <button id="forgotID">Password forgot ?</button>
+<div class="overlay">
+  <div class="container">
+
+    <!-- ═══ LOGIN ═══ -->
+    <div id="login-container">
+      <div class="login-eyebrow">
+        <span></span>
+        Oil & Energy Training Platform
+        <span></span>
+      </div>
+      <h1 class="login-headline">QUIZ<br>OPS</h1>
+      <p class="login-sub">Operational Excellence · Professional Development</p>
+
+      <div class="login-card">
+        <div class="field-group">
+          <label class="field-label" for="emailInput">Work Email</label>
+          <input class="field-input" type="email" id="emailInput" placeholder="your@company.com" />
         </div>
-        <div id="forgotIDForm" style="display:none;margin-top:10px">
-          <input type="email" id="forgotEmail" placeholder="Your email" required />
-          <button id="sendID">Send ID</button>
+        <div class="field-group">
+          <label class="field-label" for="passwordInput">Password / IGG</label>
+          <input class="field-input" type="password" id="passwordInput" placeholder="••••••••" />
+        </div>
+        <button class="btn-primary" onclick="login()">
+          <span>Access Platform</span>
+          <span>→</span>
+        </button>
+
+        <div class="login-footer">
+          <button id="forgotID" class="forgot-link">Forgot password?</button>
+          <button onclick="showSignup()" class="btn-ghost">First login? Register</button>
+        </div>
+
+        <div id="forgotIDForm" style="display:none;">
+          <div class="field-group" style="margin-top:0">
+            <label class="field-label">Email address</label>
+            <input class="field-input" type="email" id="forgotEmail" placeholder="your@company.com" required />
+          </div>
+          <button id="sendID">Send credentials</button>
           <p id="forgotMessage"></p>
         </div>
       </div>
 
-      <!-- SIGNUP PAGE -->
-      <div id="signup-container" style="display:none; text-align:center;">
-        <h1>🆕 First connexion ?</h1>
-        <p>Subscribe with email and ID</p>
-		<p style="font-size:12px;color:#666;margin-top:6px;">
-  For your first login, please use the IGG number printed on your company card as your initial password.
-</p>
-        <input type="email" id="signupEmail" placeholder="Your email" required />
-        <br>
-        <input type="text" id="signupID" placeholder="Your ID" required />
-        <br>
-        <button onclick="signup()">Subscribe</button>
+      <p style="margin-top:24px; font-size:0.68rem; color:var(--text-tertiary); text-align:center; font-family:var(--font-mono); letter-spacing:0.1em;">
+        First login → use your IGG number as password
+      </p>
+    </div>
+
+    <!-- ═══ SIGNUP ═══ -->
+    <div id="signup-container" style="display:none;">
+      <div class="login-eyebrow">
+        <span></span>
+        Create Account
+        <span></span>
+      </div>
+      <h1 class="login-headline" style="font-size:3rem;">REGISTER</h1>
+      <p class="login-sub">Join the Quiz'Ops training network</p>
+
+      <div class="login-card">
+        <div class="field-group">
+          <label class="field-label">Work Email</label>
+          <input class="field-input" type="email" id="signupEmail" placeholder="your@company.com" required />
+        </div>
+        <div class="field-group">
+          <label class="field-label">IGG Number</label>
+          <input class="field-input" type="text" id="signupID" placeholder="Your company IGG" required />
+        </div>
+        <button class="btn-primary" onclick="signup()">
+          <span>Create Account</span>
+          <span>→</span>
+        </button>
         <p id="signupMessage"></p>
-        <button onclick="showLogin()">⬅ Already subscribe ? Please login</button>
-      </div>
-
-      <!-- === ADMIN PANEL === -->
-      <div id="admin-panel" style="display:none;">
-        <h1>👨‍💻 Moderator Dashboard</h1>
-        <button id="logoutBtnAdmin" onclick="logout()">Logout</button>
-        <p style="text-align:center">Select a user to view their quiz progress:</p>
-        <div id="user-list" style="margin-top:20px;"></div>
-        <div id="user-progress" style="margin-top:30px;"></div>
-      </div>
-
-      <!-- === THEME SELECTION === -->
-      <div id="theme-selection" style="display:none;">
-        <div style="display:flex;align-items:center;justify-content:space-between;">
-          <h1>⛽ Quiz'Ops</h1>
-          <button id="logoutBtn" onclick="logout()">Logout</button>
+        <div style="margin-top:16px; text-align:center;">
+          <button onclick="showLogin()" class="btn-ghost">← Back to Login</button>
         </div>
-        <p style="text-align:center">
-          Pick a theme. Each quiz draws <b>10 random questions</b> from the theme’s question bank.
-        </p>
-
-        <!-- Dynamic themes grid -->
-        <div class="themes"></div>
-
-<div id="challenge-section" style="display:none; margin-top:24px;">
-    <h2>⚔️ Challenge</h2>
-    <button id="showChallengeBtn">Challenge a player</button>
-
-<button id="topPlayersBtn">🏆 Top 3 Players</button>
-
-<!-- === CONCOURS DU MOIS === -->
-<button id="monthlyContestBtn" style="margin-top:10px; opacity:0.5;" disabled>
-  🚀 Monthly competition
-</button>
-
-<!-- Conteneur pour afficher le top 3 -->
-<div id="topPlayersContainer" style="display:none; margin-top:16px; text-align:center;">
-  <h3>🏅 Scoreboard TopPlayer</h3>
-  <div id="topPlayersList"></div>
-</div>
-
-    <div id="challenge-form" style="display:none; margin-top:12px;">
-      <select id="opponentEmail">
-  <option value="">Choose a player...</option>
-</select>
-      <select id="challengeTheme">
-        <option value="cargo_docs">Cargo Docs</option>
-        <option value="refined_products">Refined Products</option>
-        <option value="specialty_products">Specialty Products</option>
-      </select>
-      <button id="sendChallengeBtn">Send a challenge</button>
+      </div>
     </div>
 
-    <!-- Container pour défis reçus -->
-    <div id="my-challenges" style="margin-top:16px; display:none;">
-        <h3>Challenge received</h3>
-        <div id="challenges-list"></div>
+    <!-- ═══ ADMIN ═══ -->
+    <div id="admin-panel" style="display:none;">
+      <div class="app-nav">
+        <div class="app-nav-logo">
+          <span class="live-dot"></span>
+          QUIZ'OPS <span style="opacity:0.4;font-size:0.8em;margin-left:8px;">ADMIN</span>
+        </div>
+        <button id="logoutBtnAdmin" onclick="logout()">LOGOUT</button>
+      </div>
+      <div class="section-eyebrow">Moderation</div>
+      <h2 class="section-title">MODERATOR DASHBOARD</h2>
+      <p class="section-desc">Select a user below to review their quiz progress and performance.</p>
+      <div id="user-list" style="margin-top:24px;"></div>
+      <div id="user-progress" style="margin-top:32px;"></div>
     </div>
-</div>
 
-        <!-- Progress dashboard -->
-        <div id="progress-overview"></div>
+    <!-- ═══ THEME SELECTION ═══ -->
+    <div id="theme-selection" style="display:none;">
+
+      <!-- Nav -->
+      <div class="app-nav">
+        <div class="app-nav-logo">
+          <span class="live-dot"></span>
+          QUIZ'OPS
+        </div>
+        <div class="nav-user-info">
+          <span class="nav-user-email" id="navUserEmail"></span>
+          <button id="logoutBtn" onclick="logout()">LOGOUT</button>
+        </div>
       </div>
 
-      <!-- === QUIZ CONTAINER === -->
-      <div id="quiz-container" style="display:none;">
-        <h2 id="theme-title"></h2>
-        <div class="progress-bar"><div class="progress-fill" id="progressFill">0%</div></div>
-		<div id="timer" style="text-align:center; margin-bottom:10px; font-weight:600;"></div>
+      <!-- Overall progress banner -->
+      <div id="overallProgressContainer">
+        <div class="overall-bar-wrap">
+          <span class="overall-bar-label">Overall Progress</span>
+          <div class="overall-bar-track">
+            <div id="overallProgressFill"></div>
+          </div>
+          <span class="overall-bar-pct" id="overallPct">0%</span>
+        </div>
+      </div>
+
+      <!-- Section header -->
+      <div class="section-eyebrow">Training Modules</div>
+      <h2 class="section-title">SELECT A THEME</h2>
+      <p class="section-desc">Each session draws <strong style="color:var(--amber)">10 random questions</strong> from the module bank. New themes unlock progressively.</p>
+
+      <!-- Theme grid (populated by JS) -->
+      <div class="themes"></div>
+
+      <!-- Challenge section -->
+      <div id="challenge-section" style="display:none;">
+        <div class="challenge-header">
+          <div class="challenge-icon">⚔️</div>
+          <div class="challenge-header-text">
+            <h2>CHALLENGE ARENA</h2>
+            <p>Compete against colleagues in real-time quiz battles</p>
+          </div>
+        </div>
+        <div class="challenge-actions">
+          <button id="showChallengeBtn" class="challenge-btn">⚡ Challenge a Player</button>
+          <button id="topPlayersBtn">🏆 Leaderboard</button>
+          <button id="monthlyContestBtn" style="margin-top:0;" disabled>🚀 Monthly Contest</button>
+        </div>
+
+        <div id="topPlayersContainer" style="display:none;">
+          <h3>🏅 TOP PLAYERS</h3>
+          <div id="topPlayersList"></div>
+        </div>
+
+        <div id="challenge-form" style="display:none; margin-top:14px;">
+          <select id="opponentEmail">
+            <option value="">Choose a player...</option>
+          </select>
+          <select id="challengeTheme">
+            <option value="cargo_docs">Cargo Docs</option>
+            <option value="refined_products">Refined Products</option>
+            <option value="specialty_products">Specialty Products</option>
+          </select>
+          <button id="sendChallengeBtn">Send Challenge →</button>
+        </div>
+
+        <div id="my-challenges" style="display:none;">
+          <h3>INCOMING CHALLENGES</h3>
+          <div id="challenges-list"></div>
+        </div>
+      </div>
+
+      <!-- Progress dashboard -->
+      <div id="progress-overview"></div>
+    </div>
+
+    <!-- ═══ QUIZ CONTAINER ═══ -->
+    <div id="quiz-container" style="display:none;">
+      <div class="app-nav" style="margin-bottom:24px;">
+        <div class="app-nav-logo">
+          <span class="live-dot"></span>
+          QUIZ'OPS
+        </div>
+        <button id="backBtnNav" onclick="goBack()" class="btn-ghost">← Exit Quiz</button>
+      </div>
+
+      <h2 id="theme-title"></h2>
+
+      <!-- Progress bar -->
+      <div class="progress-bar" style="margin-bottom:0;">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <!-- Score + timer -->
+      <div class="quiz-meta">
         <div class="score" id="scoreLine"></div>
-        <div class="question" id="question"></div>
-        <div class="choices" id="choices"></div>
-        <div class="result" id="result"></div>
-        <div class="explanation" id="explanation"></div>
-        <div class="row">
-          <button id="prevBtn" onclick="prevQuestion()">⬅ Previous</button>
-          <button id="nextBtn" onclick="nextQuestion()">Next ➡</button>
-          <button id="backBtn" onclick="goBack()">⬅ Back to Menu</button>
-        </div>
-        <div class="footer-note">Tip: you get a different set each time you launch a theme.</div>
+        <div id="timer"></div>
       </div>
 
-<div id="overallProgressContainer" style="margin: 16px 0; text-align:center;">
-  <div style="background:#eee; border-radius:8px; height:20px; width:80%; margin:0 auto; position:relative;">
-    <div id="overallProgressFill" style="background:#4caf50; height:100%; width:0%; border-radius:8px; text-align:center; color:white; line-height:20px; font-size:12px;">
-      0%
-    </div>
-  </div>
-  
+      <div class="question" id="question"></div>
+      <div class="choices" id="choices"></div>
+      <div class="result" id="result"></div>
+      <div class="explanation" id="explanation"></div>
 
+      <div class="row">
+        <button id="prevBtn" onclick="prevQuestion()">← Previous</button>
+        <button id="nextBtn" onclick="nextQuestion()">Next →</button>
+        <button id="backBtn" onclick="goBack()">← Menu</button>
+      </div>
+
+      <p class="footer-note">// New question set each session — results tracked automatically</p>
     </div>
-  </div>
+
+  </div><!-- /container -->
+</div><!-- /overlay -->
 
   <script>
     // ---------------------------
@@ -521,14 +1598,13 @@
     // Laisse vide si tu ne veux pas envoyer vers Power Automate pour l'instant
   function showSignup() {
     document.getElementById("login-container").style.display = "none";
-    document.getElementById("signup-container").style.display = "block";
+    document.getElementById("signup-container").style.display = "flex";
 }
 
 function showLogin() {
     document.getElementById("signup-container").style.display = "none";
-    document.getElementById("login-container").style.display = "block";
+    document.getElementById("login-container").style.display = "flex";
 }
-
   // === Power Automate Flow URL ===
 const flowUrl = "https://099c9236da0ae9fea8a2fb3b782904.4b.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/363304342fcd421f9e6eb45b96bff882/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=CJen2AkWl70Z63WNYZoNarCmS_wB1YYJaZmICS-v4TU";
 const flowUrlSignup = "https://099c9236da0ae9fea8a2fb3b782904.4b.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/533533933bb04b309430b948b20b4b71/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=lonK8iUQKlRMstI2u3LNEmeV61G9xLRU8poE9xBfETA";
@@ -1222,10 +2298,15 @@ refined_products: {
 
     {
       id: "rfp10",
-      question: "Which of the following are typical Jet A1 quality control parameters?",
-      choices: ["Thermal stability", "Water separation index", "Gum content", "Cetane number"],
-      correct: [0, 1, 2],
-      explanation: "Jet A1 is tested for thermal stability, water separation, and gum content to ensure clean combustion and safety."
+question: "According to the IFP oxygenate incorporation table, what is the maximum MTBE incorporation limit in SP95 and SP98?",
+      choices: [
+        "A. 5% vol.",
+        "B. 10% vol.",
+        "C. 15% vol.",
+        "D. 22% vol."
+      ],
+      correct: 4,
+      explanation: "Maximum MTBE incorporation limit of 22% vol. for both SP95 and SP98. The same 22% limit applies to ETBE. Despite this high theoretical limit, MTBE use has declined in Europe due to groundwater contamination concerns. MTBE has a TVR of 0.55 bar and a RON of ~118."
     },
 
     {
@@ -1270,18 +2351,28 @@ refined_products: {
 
     {
       id: "rfp16",
-      question: "Which of the following are used to improve lubricity in ultra-low sulfur diesel?",
-      choices: ["Lubricity additives", "Cetane improvers", "Aromatics", "Methanol"],
-      correct: 0,
-      explanation: "Lubricity additives are added to compensate for the loss of natural lubricants removed during desulfurization."
+      question: "According to the IFP table, what is the maximum ethanol content in SP95-E10 gasoline, and what is the corresponding maximum oxygen content?",
+      choices: [
+        "A. 5% vol. ethanol; max 2.7% mass oxygen",
+        "B. 10% vol. ethanol; max 3.7% mass oxygen",
+        "C. 10% vol. ethanol; max 2.7% mass oxygen",
+        "D. 15% vol. ethanol; max 5.0% mass oxygen"
+      ],
+      correct: 1,
+      explanation: " SP95-E10 allows up to 10% vol. ethanol and a maximum oxygen content of 3.7% mass. By comparison, SP95 and SP98 are limited to 2.7% mass oxygen, consistent with their lower maximum ethanol or ether content."
     },
 
     {
       id: "rfp17",
-      question: "Which of the following are typical Jet A1 contaminants to be avoided?",
-      choices: ["Water", "Particulates", "Microbial growth", "Sulfur"],
-      correct: [0, 1, 2],
-      explanation: "Jet A1 must be free of water, particulates, and microbial contamination to ensure safe engine operation."
+      question: "According to IFP data, ethanol has a RON of ~120 and a MON of ~99. What is the resulting sensitivity of ethanol?",
+      choices: [
+        "A. 10",
+        "B. 14",
+        "C. 21",
+        "D. 30"
+      ],
+      correct: 2,
+      explanation: "Sensitivity = RON – MON = 120 – 99 = 21. The IFP table confirms a sensitivity of 21 for ethanol. High sensitivity fuels perform well in city driving (RON-dominated) but less well under high-load motorway conditions (MON-dominated), which is why MON remains a separate specification."
     },
 
     {
@@ -1302,10 +2393,15 @@ refined_products: {
 
     {
       id: "rfp20",
-      question: "Which of the following are used to characterize the volatility of diesel?",
-      choices: ["ASTM distillation curve", "Reid Vapor Pressure", "Flash point", "Cloud point"],
-      correct: [0, 2],
-      explanation: "Diesel volatility is assessed using ASTM distillation and flash point. RVP is more relevant for gasoline."
+      question: "According to the IFP sulfur evolution table, what was the maximum sulfur content of unleaded gasoline before 2000, and what is the current limit since 01/01/2009?",
+      choices: [
+        "A. 1000 ppm before 2000; 50 ppm since 2009",
+        "B. 500 ppm before 2000; 10 ppm since 2009",
+        "C. 350 ppm before 2000; 10 ppm since 2009",
+        "D. 500 ppm before 2000; 50 ppm since 2009"
+      ],
+      correct: 1,
+      explanation: "Before 2000 → 500 ppm (0.05% mass); from 01/01/2003 → 150 ppm; from 01/01/2005 → 50 ppm; from 01/01/2009 → 10 ppm (0.001% mass). This 10 ppm 'sulfur-free' limit is essential to protect three-way catalytic converters from sulfur poisoning."
     },
 
     {
@@ -1318,10 +2414,15 @@ refined_products: {
 
     {
       id: "rfp22",
-      question: "Which of the following are typical Jet A1 additives?",
-      choices: ["Anti-icing additive", "Static dissipator", "Lubricity improver", "Cetane booster"],
-      correct: [0, 1, 2],
-      explanation: "Jet A1 may include anti-icing agents, static dissipators, and lubricity improvers. Cetane boosters are for diesel."
+      question: "What is the current maximum benzene content (since 2000), and what was it before 2000?",
+      choices: [
+        "A. Before 2000: 2% vol.; current: 0.5% vol.",
+        "B. Before 2000: 5% vol.; current: 1% vol.",
+        "C. Before 2000: 3% vol.; current: 1% vol.",
+        "D. Before 2000: 5% vol.; current: 2% vol."
+      ],
+      correct: 1,
+      explanation: "Benzene was limited to 5% vol. before 2000, reduced to 1% vol. from 01/01/2000, and remained at 1% vol. through 2011. Benzene is a Group 1 carcinogen; its strict limitation is driven by health concerns for refuelling workers and urban populations exposed to exhaust and evaporative emissions."
     },
 
     {
@@ -1342,10 +2443,15 @@ refined_products: {
 
     {
       id: "rfp25",
-      question: "Which of the following are typical Jet A1 quality tests?",
-      choices: ["JFTOT thermal stability", "MSEP water separation", "Cetane index", "Gum content"],
-      correct: [0, 1, 3],
-      explanation: "Jet A1 is tested for thermal stability (JFTOT), water separation (MSEP), and gum content to ensure fuel cleanliness and performance."
+      question: "What is the current maximum aromatics and olefins content in automotive gasoline (2011 specifications)?",
+      choices: [
+        "A. Aromatics max 42% vol.; olefins max 18% vol.",
+        "B. Aromatics max 35% vol.; olefins max 18% vol.",
+        "C. Aromatics max 35% vol.; olefins max 25% vol.",
+        "D. Aromatics max 25% vol.; olefins max 15% vol."
+      ],
+      correct: 1,
+      explanation: "Aromatics reduced from 42% (year 2000) to 35% vol. (2005 onwards); olefins maintained at 18% vol. max since 2000. High aromatics contribute to particulate precursors and carcinogenic exhaust compounds (benzene, PAH); high olefins cause photochemical smog and gum formation during storage."
     },
 	
 {
@@ -1357,11 +2463,16 @@ refined_products: {
 },
 {
   id: "rfp27",
-  question: "What is the minimum flash point required for Jet A1 fuel?",
-  choices: ["30°C", "38°C", "47°C", "55°C"],
-  correct: 1,
-  explanation: "Jet A1 must have a minimum flash point of 38°C to ensure safety during handling and storage, limiting the presence of light, volatile compounds."
-},
+  question: "What is the minimum flash point for Jet A1, what method is used, and why is this limit critical?",
+      choices: [
+        "A. ≥ 55°C, Pensky-Martens method; required for fire safety at airports",
+        "B. ≥ 38°C, Abel method (ASTM D56/D3828); limits light compounds, ensuring safe handling while maintaining cold-weather performance",
+        "C. ≥ 60°C, Cleveland method; prevents vapour formation at high altitude",
+        "D. ≥ 38°C, Pensky-Martens method; prevents vapour lock in fuel lines"
+      ],
+      correct: 1,
+      explanation: "Jet A1 flash point ≥ 38°C measured by the Abel method (ASTM D56 or D3828 / IP 170). This is the most important volatility specification for Jet A1 — it limits the presence of light compounds that would create flammable vapours at ambient temperature, while the 38°C lower limit (vs. 55°C for diesel) allows adequate cold-weather performance at high altitude."
+    },
 {
   id: "rfp28",
   question: "Which of the following are considered environmental pollutants in gasoline composition?",
@@ -1371,17 +2482,22 @@ refined_products: {
 },
 {
   id: "rfp29",
-  question: "Which of the following are typical additives used in Jet A1 fuel?",
-  choices: ["Anti-icing agents", "Cetane improvers", "Static dissipators", "Lubricity enhancers"],
-  correct: [0, 2, 3],
-  explanation: "Jet A1 may include anti-icing additives, static dissipators, and lubricity enhancers to ensure safe and efficient engine performance."
-},
+  question: "What is the maximum viscosity at cold temperature for Jet A1?",
+      choices: [
+        "A. ≤ 4 cSt at –20°C",
+        "B. ≤ 8 cSt at –20°C",
+        "C. ≤ 12 cSt at –20°C",
+        "D. ≤ 40 cSt at –20°C"
+      ],
+      correct: 1,
+      explanation: "Specifies viscosity ≤ 8 cSt at –20°C for Jet A1. This ensures the fuel can still be properly atomised by the burners at low temperatures, enabling reliable combustion. Excessive cold viscosity would result in large fuel droplets and poor atomisation, causing incomplete combustion or engine misfire."
+    },
 {
   id: "rfp30",
-  question: "Which of the following are typical specifications for diesel fuel?",
+  question: "Which of the following are typical specifications for diesel ?",
   choices: ["Cetane number", "Sulfur content", "Octane number", "Cloud point"],
   correct: [0, 1, 3],
-  explanation: "Diesel fuel is characterised by its cetane number, sulfur content, and cold flow properties like cloud point. Octane number is not relevant for diesel."
+  explanation: "Diesel  is characterised by its cetane number, sulfur content, and cold flow properties like cloud point. Octane number is not relevant for diesel."
 },
 {
   id: "rfp31",
@@ -1406,11 +2522,16 @@ refined_products: {
 },
 {
   id: "rfp34",
-  question: "Which of the following are typical sources of contamination in refined products?",
-  choices: ["Water", "Particulates", "Microbial growth", "Sulfur"],
-  correct: [0, 1, 2],
-  explanation: "Water, particulates, and microbial growth are common contaminants that can affect fuel quality and performance."
-},
+question: "What is the minimum flash point for road diesel and domestic fuel oil (fioul domestique), and what method is used?",
+      choices: [
+        "A. > 38°C, Abel method for both products",
+        "B. > 55°C, Pensky-Martens (EN 2719) for diesel; > 55°C, AFNOR/Luchaire method for domestic fuel oil",
+        "C. > 60°C, Pensky-Martens for diesel; > 70°C, Cleveland for fuel oil",
+        "D. > 55°C, Cleveland method for both products"
+      ],
+      correct: 1,
+      explanation: "The IFP document specifies: road diesel (gazole moteur) flash point > 55°C by Pensky-Martens (NF EN 2719); domestic fuel oil (fioul domestique) flash point > 55°C by AFNOR/Luchaire method (NF T 60-103). Fishing diesel and DML have a higher minimum of > 60°C."
+    },
 {
   id: "rfp35",
   question: "Which of the following are typical blending constraints for diesel fuel?",
@@ -1427,11 +2548,16 @@ refined_products: {
 },
 {
   id: "rfp37",
-  question: "Which of the following are typical Jet A1 fuel quality tests?",
-  choices: ["JFTOT", "MSEP", "Cetane index", "Gum content"],
-  correct: [0, 1, 3],
-  explanation: "Jet A1 is tested for thermal stability (JFTOT), water separation (MSEP), and gum content to ensure performance and safety."
-},
+  question: "On cetane improver additives (pro-cetane), by how many points can alkyl nitrate additives increase the cetane index, and what is their limitation?",
+      choices: [
+        "A. 1 to 2 points; they are less effective at high temperatures",
+        "B. 3 to 5 points depending on quantity added; they are less effective when the base cetane index is already low",
+        "C. 5 to 10 points; they can only be used with paraffinic gasoils",
+        "D. Up to 15 points; they have no known limitations"
+      ],
+      correct: 1,
+      explanation: "The IFP document states alkyl nitrate pro-cetane additives can increase the cetane index by 3 to 5 points depending on quantity. However, they are less effective when the base cetane index is already low — meaning severely cracked or aromatic-rich feeds benefit less from these additives than paraffinic straight-run gas oils."
+    },
 {
   id: "rfp38",
   question: "Which of the following are typical characteristics of fuel oil?",
@@ -1441,11 +2567,16 @@ refined_products: {
 },
 {
   id: "rfp39",
-  question: "Which of the following are used to improve the cold flow properties of diesel?",
-  choices: ["Pour point depressants", "Cloud point enhancers", "Cetane improvers", "Anti-icing agents"],
-  correct: 0,
-  explanation: "Pour point depressants are used to lower the temperature at which diesel begins to gel, improving cold flow performance."
-},
+  question: "What are the cold flow properties specified for domestic fuel oil (fioul domestique)?",
+      choices: [
+        "A. Cloud point ≤ –5°C; CFPP ≤ –10°C; pour point ≤ –15°C",
+        "B. Cloud point ≤ 0°C; CFPP ≤ –5°C; viscosity ≤ 4 cSt at 40°C",
+        "C. Cloud point ≤ +2°C; pour point ≤ –9°C; CFPP ≤ –4°C",
+        "D. Only CFPP ≤ –4°C — no cloud point or pour point specified"
+      ],
+      correct: 2,
+      explanation: "There are three cold flow parameters for FOD: cloud point ≤ +2°C, pour point (point d'écoulement) ≤ –9°C, and CFPP (TLF) ≤ –4°C. These are less severe than road diesel winter grades because FOD is used in fixed heating installations that typically have heated storage, unlike mobile diesel vehicles."
+    },
 {
   id: "rfp40",
   question: "Which of the following are typical Jet A1 contaminants to be avoided?",
@@ -1455,11 +2586,16 @@ refined_products: {
 },
 {
   id: "rfp41",
-  question: "Which of the following are considered aromatic hydrocarbons?",
-  choices: ["Benzene", "Toluene", "Xylene", "Hexane"],
-  correct: [0, 1, 2],
-  explanation: "Benzene, toluene, and xylene are aromatic hydrocarbons with ring structures, commonly found in gasoline."
-},
+  question: "According to IFP data, what is the density specification for road diesel at 15°C, and how did the maximum change in year 2000?",
+      choices: [
+        "A. 800–840 kg/m³; maximum unchanged since 1990",
+        "B. 840–875 kg/m³; maximum unchanged since 1990",
+        "C. 810–850 kg/m³; minimum raised from 810 to 820 kg/m³ in 2000",
+        "D. 820–845 kg/m³; maximum reduced from 860 to 845 kg/m³ in 2000"
+      ],
+      correct: 3,
+      explanation: "Diesel density 820–845 kg/m³ at 15°C, with the maximum reduced from 0.860 to 0.845 in year 2000. This reduction was driven by emission standards — higher-density diesel (rich in heavy aromatics) increases particulate and PAH emissions. The 845 kg/m³ limit pushes towards lighter, more paraffinic blends."
+    },
 {
   id: "rfp42",
   question: "Which of the following are typical blending components for gasoline?",
@@ -1476,25 +2612,35 @@ refined_products: {
 },
 {
   id: "rfp44",
-  question: "Which of the following are used to improve gasoline octane number?",
-  choices: ["Aromatics", "Olefins", "Paraffins", "MTBE"],
-  correct: [0, 1, 3],
-  explanation: "Aromatics, olefins, and MTBE increase octane number. Paraffins have lower octane values."
-},
+  question: "What is the maximum water content specified for diesel and domestic fuel oil (Section V stability)?",
+      choices: [
+        "A. ≤ 200 mg/kg",
+        "B. ≤ 100 mg/kg",
+        "C. ≤ 500 mg/kg",
+        "D. ≤ 1000 mg/kg"
+      ],
+      correct: 0,
+      explanation: "Water content ≤ 200 mg/kg for diesel and domestic fuel oil. Water in diesel can promote microbial growth (bacteria and fungi) in storage tanks, corrode metal components, cause injector seizure at low temperatures (ice formation), and reduce the effective lubricity of the fuel."
+    },
 {
   id: "rfp45",
   question: "Which of the following are typical Jet A1 fuel specifications?",
-  choices: ["Freezing point ≤ -47°C", "Flash point ≥ 38°C", "Cetane number ≥ 51", "Thermal stability (JFTOT)"],
+  choices: ["Freezing point ≤ -47°C", "Flash point ≥ 38°C", "Cetane number ≥ 51", "Thermal stability"],
   correct: [0, 1, 3],
   explanation: "Jet A1 must meet freezing point, flash point, and thermal stability requirements. Cetane number is for diesel."
 },
 {
   id: "rfp46",
-  question: "Which of the following are typical diesel fuel cold flow specifications?",
-  choices: ["Cloud point", "Pour point", "Freezing point", "Flash point"],
-  correct: [0, 1],
-  explanation: "Diesel cold flow properties are assessed using cloud and pour points. Freezing point is more relevant for Jet A1."
-},
+  question: "What is the maximum viscosity for heavy fuel oil, and at what temperature is it measured?",
+      choices: [
+        "A. ≤ 20 cSt at 50°C",
+        "B. ≤ 40 cSt at 100°C",
+        "C. ≤ 100 cSt at 80°C",
+        "D. ≤ 180 cSt at 50°C"
+      ],
+      correct: 1,
+      explanation: "Heavy fuel oil viscosity ≤ 40 cSt at 100°C. Since heavy fuel oils are stored and handled hot, the reference temperature is 100°C rather than the 40°C used for diesel. The typical target viscosity at the burner nozzle is 10–20 cSt, achieved by preheating, which is why the viscosity-temperature diagram is provided in the IFP document."
+    },
 {
   id: "rfp47",
   question: "Which of the following are considered blending constraints for Jet A1?",
@@ -1504,25 +2650,40 @@ refined_products: {
 },
 {
   id: "rfp48",
-  question: "Which of the following are typical Jet A1 additives?",
-  choices: ["Anti-icing", "Static dissipator", "Cetane improver", "Lubricity enhancer"],
-  correct: [0, 1, 3],
-  explanation: "Jet A1 may include anti-icing agents, static dissipators, and lubricity enhancers. Cetane improvers are for diesel."
-},
+  question: "Rank the following products from LOWEST to HIGHEST minimum flash point: Jet A1 / Road diesel / Heavy fuel oil / Paraffinic base oils.",
+      choices: [
+        "A. Road diesel (38°C) < Jet A1 (55°C) < Heavy fuel oil (70°C) < Base oils (180–240°C)",
+        "B. Jet A1 (38°C) < Heavy fuel oil (55°C) < Road diesel (70°C) < Base oils (180–240°C)",
+        "C. Jet A1 (38°C) < Diesel (55°C) < Heavy fuel oil (70°C) < Base oils (180–240°C)",
+        "D. Road diesel (38°C) < Heavy fuel oil (51°C) < Jet A1 (70°C) < Base oils (180–240°C)"
+      ],
+      correct: 2,
+      explanation: "Jet A1 ≥ 38°C (Abel) < Road diesel ≥ 55°C (Pensky-Martens) < Heavy fuel oil ≥ 70°C (Pensky-Martens) < Paraffinic base oils ≥ 180–240°C (Cleveland) < Pure bitumens ≥ 230–250°C (Cleveland). This progression reflects increasing product heaviness and the associated safety requirements for heating and handling each product class."
+    },
 {
   id: "rfp49",
-  question: "Which of the following are considered clean fuels?",
-  choices: ["Gasoline", "Diesel", "Jet A1", "Fuel oil"],
-  correct: [0, 1, 2],
-  explanation: "Gasoline, diesel, and Jet A1 are clean fuels due to their low contamination and high-quality standards."
-},
+  question: "What is the maximum insoluble content and maximum water content specified for heavy fuel oils (stability specifications)?",
+      choices: [
+        "A. Insolubles ≤ 0.5% mass; water ≤ 1.0% mass",
+        "B. Insolubles ≤ 0.25% mass; water ≤ 0.6% mass",
+        "C. Insolubles ≤ 1.0% mass; water ≤ 2.0% mass",
+        "D. Insolubles ≤ 0.1% mass; water ≤ 0.3% mass"
+      ],
+      correct: 1,
+      explanation: "For heavy fuel oils: insolubles ≤ 0.25% mass (to ensure product stability — excessive insolubles indicate asphaltene precipitation or sludge formation) and water ≤ 0.6% mass (to limit water pollution, especially in river transport bunkering operations)."
+    },
 {
   id: "rfp50",
-  question: "Which of the following are used to assess the volatility of gasoline?",
-  choices: ["Reid Vapor Pressure", "ASTM distillation curve", "Flash point", "Pour point"],
-  correct: [0, 1],
-  explanation: "Gasoline volatility is assessed using Reid Vapor Pressure and ASTM distillation data. Flash and pour points are less relevant."
-}
+  question: "What is the maximum Conradson Carbon Residue (CCR) for diesel and domestic fuel oil, and on which fraction is it measured?",
+      choices: [
+        "A. CCR ≤ 1.0% mass; measured on the full product",
+        "B. CCR ≤ 0.1% mass; measured on the full product",
+        "C. CCR ≤ 0.5% mass; measured on the 90% distillation residue",
+        "D. CCR ≤ 0.3% mass; measured on the 10% distillation residue"
+      ],
+      correct: 3,
+      explanation: "CCR ≤ 0.3% mass for both road diesel and domestic fuel oil, measured on the 10% distillation residue. The CCR test estimates the carbon residue forming tendency of the fuel — high values indicate heavy, asphaltenic compounds that will deposit carbon on injectors and combustion chamber walls."
+    }
 
   ]
 },
@@ -5734,25 +6895,22 @@ question: "Why is it important to check compatibility of cleaning chemicals with
         const icon = unlocked ? (icons[t] || icons['cargo_docs']) : "https://img.icons8.com/ios-filled/96/lock.png";
 
         const div = document.createElement("div");
-        div.className = "theme-button";
+        div.className = "theme-button" + (!unlocked ? " locked" : "");
         div.innerHTML = `
-          <img src="${icon}" alt="${quizData[t].title}"/><br>
-          ${quizData[t].title}
-          <div class="progress-mini" style="margin-top:10px;width:100%;">
+          <img src="${icon}" alt="${quizData[t].title}"/>
+          <span class="theme-btn-title">${quizData[t].title}</span>
+          <div class="progress-mini" style="width:100%;">
             <div class="progress-mini-fill" style="width:${pct}%"></div>
           </div>
           <div class="mini-row" style="width:100%;">
-            <span style="font-size:12px">${solved}/${total || 0} solved</span>
-            <span style="font-size:12px">${pct}%</span>
+            <span>${solved}/${total || 0}</span>
+            <span>${pct}%</span>
           </div>
         `;
 
         if (unlocked) div.onclick = () => startQuiz(t);
         else {
-          div.style.opacity = "0.55";
-          div.style.cursor = "not-allowed";
-          // tooltip simple
-          div.title = "Thème verrouillé — se débloque progressivement à partir de Jan 2026";
+          div.title = "Locked — unlocks progressively from Jan 2026";
         }
         grid.appendChild(div);
       });
@@ -5809,6 +6967,12 @@ async function login() {
             localStorage.setItem("quizUser", currentUser);
             document.getElementById("login-container").style.display = "none";
             document.getElementById("theme-selection").style.display = "block";
+            // Hide hero background
+            const heroBg = document.getElementById("heroBg");
+            if (heroBg) heroBg.style.display = "none";
+            // Show user email in nav
+            const navEmail = document.getElementById("navUserEmail");
+            if (navEmail) navEmail.textContent = email;
 			
 			    // 🔹 Afficher/recharger la barre globale
     const overallContainer = document.getElementById("overallProgressContainer");
@@ -5873,8 +7037,10 @@ if (overallContainer) {
   document.getElementById("quiz-container").style.display = "none";
   document.getElementById("admin-panel").style.display = "none";
   document.getElementById("challenge-section").style.display = "none";
-  document.getElementById("login-container").style.display = "block";
+  document.getElementById("login-container").style.display = "flex";
   document.getElementById("my-challenges").style.display = "none";
+  const heroBg = document.getElementById("heroBg");
+  if (heroBg) heroBg.style.display = "block";
 }
 
 window.addEventListener("DOMContentLoaded", async () => { // <-- rendre async pour pouvoir await
@@ -5884,6 +7050,10 @@ window.addEventListener("DOMContentLoaded", async () => { // <-- rendre async po
       currentUser = saved;
       document.getElementById("login-container").style.display = "none";
       document.getElementById("theme-selection").style.display = "block";
+      const heroBg = document.getElementById("heroBg");
+      if (heroBg) heroBg.style.display = "none";
+      const navEmail = document.getElementById("navUserEmail");
+      if (navEmail) navEmail.textContent = saved;
       
       renderThemesGrid();
       loadProgressOverview();
@@ -5977,10 +7147,13 @@ function updateOverallProgressBar() {
 
   const percent = totalQuestions ? Math.round((totalSolved / totalQuestions) * 100) : 0;
   const fill = document.getElementById("overallProgressFill");
+  const pctLabel = document.getElementById("overallPct");
 
   if (fill) {
     fill.style.width = percent + "%";
-    fill.textContent = percent + "% overall completed";
+  }
+  if (pctLabel) {
+    pctLabel.textContent = percent + "%";
   }
 }
 
@@ -6413,6 +7586,7 @@ function updateTopProgressBar() {
   document.getElementById("backBtn").style.display = "none";
 
   const multiple = Array.isArray(q.correct);
+  const LETTERS = ['A','B','C','D','E'];
   q.choices.forEach((choice, idx) => {
     const wrapper = document.createElement("label");
     wrapper.className = "choice";
@@ -6420,15 +7594,37 @@ function updateTopProgressBar() {
     input.type = multiple ? "checkbox" : "radio";
     input.name = "answer";
     input.value = idx;
+    input.style.display = "none";
+    const letter = document.createElement("span");
+    letter.className = "choice-letter";
+    letter.textContent = LETTERS[idx] || idx;
     const text = document.createElement("span");
     text.textContent = choice;
+    // Visual selection feedback
+    wrapper.onclick = () => {
+      if (input.disabled) return;
+      if (multiple) {
+        input.checked = !input.checked;
+        wrapper.classList.toggle('selected', input.checked);
+      } else {
+        // Deselect all others
+        document.querySelectorAll('#choices .choice').forEach(w => {
+          w.classList.remove('selected');
+          const inp = w.querySelector('input');
+          if (inp) inp.checked = false;
+        });
+        input.checked = true;
+        wrapper.classList.add('selected');
+      }
+    };
     wrapper.appendChild(input);
+    wrapper.appendChild(letter);
     wrapper.appendChild(text);
     choicesDiv.appendChild(wrapper);
   });
 
   const checkBtn = document.createElement("button");
-  checkBtn.textContent = "Submit Answer";
+  checkBtn.innerHTML = "Validate Answer &nbsp;→";
   checkBtn.className = "submit-btn";
   checkBtn.onclick = () => { stopTimer(); checkAnswer(); };
   choicesDiv.appendChild(checkBtn);
@@ -6446,13 +7642,16 @@ function updateTopProgressBar() {
 }
 
 function startTimer() {
-  stopTimer(); // éviter un double timer
+  stopTimer();
   timeLeft = 25;
-  document.getElementById("timer").textContent = `⏳ Time left: ${timeLeft}s`;
+  const timerEl = document.getElementById("timer");
+  timerEl.textContent = `⏱ ${timeLeft}s`;
+  timerEl.classList.remove("urgent");
 
   timerInterval = setInterval(() => {
     timeLeft--;
-    document.getElementById("timer").textContent = `⏳ Time left: ${timeLeft}s`;
+    timerEl.textContent = `⏱ ${timeLeft}s`;
+    if (timeLeft <= 8) timerEl.classList.add("urgent");
 
     if (timeLeft <= 0) {
       stopTimer();
@@ -6492,7 +7691,7 @@ document.getElementById("nextBtn").style.display = "inline-block";
     ? q.correct.map(i => q.choices[i]).join(", ")
     : q.choices[q.correct];
   document.getElementById("result").textContent = "⏰ Time's up! Correct: " + answerTxt;
-  document.getElementById("result").style.color = "red";
+  document.getElementById("result").className = "result wrong-result";
   document.getElementById("explanation").textContent = q.explanation || "";
 
   answersHistory[questionIndex] = { selected: [], isCorrect: false, explanation: q.explanation, id: q.id };
@@ -6544,13 +7743,13 @@ function checkAnswer() {
   if (isCorrect) {
     score++;
     document.getElementById("result").textContent = "✅ Correct!";
-    document.getElementById("result").style.color = "green";
+    document.getElementById("result").className = "result correct-result";
   } else {
     const answerTxt = Array.isArray(q.correct)
       ? q.correct.map(i => q.choices[i]).join(", ")
       : q.choices[q.correct];
     document.getElementById("result").textContent = "❌ Wrong. Correct: " + answerTxt;
-    document.getElementById("result").style.color = "red";
+    document.getElementById("result").className = "result wrong-result";
   }
 
   document.getElementById("explanation").textContent = q.explanation || "";
@@ -7475,8 +8674,10 @@ try {
 // ----------------------------------
 // Vérifier si l'utilisateur a déjà joué au concours ce mois-ci
 // ----------------------------------
+
+
 async function checkIfUserAlreadyPlayed(email, mois) {
-    const endpoint = "https://default329e91b0e21f48fba071456717ecc2.8e.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/26f82a5bffb34bb6b24ef62672aa41c9/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=VeX2BhxG0xsBc4hB0i8qpVOtTwptzYQJfrerzGBbSRs";
+    const endpoint = "https://099c9236da0ae9fea8a2fb3b782904.4b.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/68591395b5cb4820aa766a046575d67d/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=ayp2BvTjywBN6C8qHnsqDbPvW_jXarI-jz8BHXcg21o";
 
     try {
         const response = await fetch(endpoint, {
@@ -7486,7 +8687,12 @@ async function checkIfUserAlreadyPlayed(email, mois) {
         });
 
         const data = await response.json();
-        console.log("Réponse Flow:", data);
+
+        // 🔍 Debug détaillé
+        console.log("Flow raw response:", JSON.stringify(data, null, 2));
+        console.log("Type of response:", typeof data);
+        console.log("Keys in response:", Object.keys(data));
+        console.log("Value of alreadyPlayed:", data.alreadyPlayed);
 
         return data.alreadyPlayed === true;
     }
@@ -7495,9 +8701,6 @@ async function checkIfUserAlreadyPlayed(email, mois) {
         return false; 
     }
 }
-
-
-
 
 
 let isMonthlyContest = false;
@@ -7538,7 +8741,7 @@ function updateMonthlyContestButton() {
     const btn = document.getElementById("monthlyContestBtn");
     if (!btn) return;
     const day = new Date().getDate();
-    if (day >= 20 && day <= 30) {
+    if (day >= 18 && day <= 30) {
         btn.disabled = false;
         btn.style.opacity = "1";
     } else {
@@ -7555,8 +8758,10 @@ updateMonthlyContestButton();
 const monthlyBtnEl = document.getElementById("monthlyContestBtn");
 if (monthlyBtnEl) {
     monthlyBtnEl.addEventListener("click", async () => {
-        const month = new Date().getMonth() + 1;
+        const month = String(new Date().getMonth() + 1); // <-- convertir en string
         const email = currentUser || "inconnu@example.com";
+
+        console.log("Check participation pour :", email, month, typeof month);
 
         // 1️⃣ Vérification via Power Automate
         const alreadyPlayed = await checkIfUserAlreadyPlayed(email, month);
@@ -8161,8 +9366,8 @@ const monthlyContestQuestions = {
             "10%",
             "50%"
         ],
-        answer: "0.05–5%",
-        explanation: "Most crude oils contain sulfur within the range of 0.05–5%."
+        answer: "0.5–5%",
+        explanation: "Most crude oils contain sulfur within the range of 0.5–5%."
     },
     {
         question: "Typical hydrogen content in crude:",
@@ -8351,8 +9556,6 @@ const monthlyContestQuestions = {
   </script>
 </body>
 </html>
-
-
 
 
 
